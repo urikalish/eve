@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+}
+
+@keyframes fade-in-animation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes app-logo-color-animation {
+  0% {
+		filter: hue-rotate(315deg);
+  }
+  100% {
+		filter: hue-rotate(205deg);
+  }
+}
+
+@keyframes video-loop-color-animation {
+	0% {
+		background-color: hsl(0, 25%, 50%);
+	}
+	50% {
+		background-color: hsl(180, 50%, 50%);
+	}
+	100% {
+		background-color: hsl(360, 25%, 50%);
+	}
+}

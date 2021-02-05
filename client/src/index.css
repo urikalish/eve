@@ -1,0 +1,48 @@
+/* Play font */
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Play Regular'), local('Play-Regular'),
+  url('./fonts/play-v11-latin-regular.woff2') format('woff2'),
+  url('./fonts/play-v11-latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Play';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Play Bold'), local('Play-Bold'),
+  url('./fonts/play-v11-latin-700.woff2') format('woff2'),
+  url('./fonts/play-v11-latin-700.woff') format('woff');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+	font-family: 'Play', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  height: 100%;
+	background-color: #000;
+}

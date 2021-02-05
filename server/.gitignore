@@ -1,0 +1,7 @@
+# npm and yarn
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# output
+dist/

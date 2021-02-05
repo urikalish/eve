@@ -1,0 +1,36 @@
+{
+  "name": "eve",
+  "version": "1.0.0",
+  "description": "Eve",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "cd server && yarn prettier && cd ../client && yarn prettier && cd ..",
+    "lint": "cd server && yarn lint && cd ../client && yarn lint && cd ..",
+    "tsc": "cd server && yarn tsc && cd ../client && yarn tsc && cd ..",
+    "compile": "cd server && yarn compile && cd ../client && yarn compile && cd ..",
+    "server-dev": "cd server && yarn dev",
+    "client-dev": "cd client && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server-dev\" \"yarn client-dev\"",
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn compile",
+      "pre-push": ""
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urikalis/eve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/urikalish/eve/issues"
+  },
+  "homepage": "https://github.com/urikalish/eve#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "~5.3.0",
+    "husky": "~4.3.0"
+  }
+}
