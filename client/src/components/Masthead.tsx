@@ -96,7 +96,6 @@ export const Masthead = memo(() => {
 
 	const pageLinks = [
 		{ text: 'Home', to: '/' },
-		{ text: 'Games', to: '/games' },
 		{ text: 'About', to: '/about' },
 	];
 

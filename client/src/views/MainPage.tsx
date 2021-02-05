@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { AboutPage } from './AboutPage';
-import { GamesPage } from './GamesPage';
 import { HomePage } from './HomePage';
 import { Masthead } from '../components/Masthead';
 import { VideoLoop } from '../components/VideoLoop';
@@ -48,7 +47,7 @@ export const MainPage = memo(() => {
 			maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			padding: '0 32px',
+			padding: '0 16px',
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',
@@ -57,7 +56,7 @@ export const MainPage = memo(() => {
 			maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			padding: '32px',
+			padding: '16px',
 			color: theme.palette.text.primary,
 		},
 	}));
@@ -75,7 +74,6 @@ export const MainPage = memo(() => {
 				<Box className={classes.pageContainer}>
 					<Switch>
 						<Route path="/home" exact component={HomePage} />
-						<Route path="/games" exact component={GamesPage} />
 						<Route path="/about" exact component={AboutPage} />
 						<Route component={HomePage} />
 					</Switch>

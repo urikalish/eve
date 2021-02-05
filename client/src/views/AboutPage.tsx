@@ -13,7 +13,7 @@ export const AboutPage = memo(() => {
 
 	return (
 		<Box id="AboutPage" className={classes.root}>
-			<Box className={classes.content}>This is the ABOUT page</Box>
+			<Box className={classes.content}>Uri Kalish</Box>
 		</Box>
 	);
 });

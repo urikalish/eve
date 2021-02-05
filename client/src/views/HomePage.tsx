@@ -7,9 +7,18 @@ export const HomePage = memo(() => {
 		root: {
 			position: 'relative',
 		},
+		grid: {
+			display: 'grid',
+			gridTemplateColumns: '1fr 1fr 1fr',
+			gridGap: 16,
+		},
 		section: {
-			marginBottom: 20,
-			opacity: 0.8,
+			position: 'relative',
+			marginBottom: 16,
+			opacity: 0.9,
+		},
+		blurCode: {
+			filter: 'blur(3px)',
 		},
 		content: {},
 	}));
@@ -17,68 +26,70 @@ export const HomePage = memo(() => {
 
 	return (
 		<Box id="HomePage" className={classes.root}>
-			<Box className={classes.section}>
-				<p
-					className="codepen"
-					data-height="300"
-					data-theme-id="dark"
-					data-default-tab="js"
-					data-user="urikalish"
-					data-slug-hash="ZEBGVVY"
-					data-pen-title="ZEBGVVY"
-					style={{
-						height: '300px',
-						boxSizing: 'border-box',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						border: '2px solid',
-						margin: '1em 0',
-						padding: '1em',
-					}}
-				/>
-			</Box>
-			<Box className={classes.section}>
-				<p
-					className="codepen"
-					data-height="300"
-					data-theme-id="dark"
-					data-default-tab="result"
-					data-user="urikalish"
-					data-slug-hash="RworEBK"
-					data-pen-title="RworEBK"
-					style={{
-						height: '300px',
-						boxSizing: 'border-box',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						border: '2px solid',
-						margin: '1em 0',
-						padding: '1em',
-					}}
-				/>
-			</Box>
-			<Box className={classes.section}>
-				<p
-					className="codepen"
-					data-height="300"
-					data-theme-id="dark"
-					data-default-tab="result"
-					data-user="urikalish"
-					data-slug-hash="yLVeGzq"
-					data-pen-title="yLVeGzq"
-					style={{
-						height: '300px',
-						boxSizing: 'border-box',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						border: '2px solid',
-						margin: '1em 0',
-						padding: '1em',
-					}}
-				/>
+			<Box className={classes.grid}>
+				<Box className={`${classes.section} ${classes.blurCode}`}>
+					<p
+						className="codepen"
+						data-height="250"
+						data-theme-id="dark"
+						data-default-tab="js"
+						data-user="urikalish"
+						data-slug-hash="RworEBK"
+						data-pen-title="RworEBK"
+						style={{
+							height: '250px',
+							boxSizing: 'border-box',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							border: '0 solid',
+							margin: '1em 0',
+							padding: '1em',
+						}}
+					/>
+				</Box>
+				<Box className={classes.section}>
+					<p
+						className="codepen"
+						data-height="250"
+						data-theme-id="dark"
+						data-default-tab="result"
+						data-user="urikalish"
+						data-slug-hash="ZEBGVVY"
+						data-pen-title="ZEBGVVY"
+						style={{
+							height: '250px',
+							boxSizing: 'border-box',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							border: '0 solid',
+							margin: '1em 0',
+							padding: '1em',
+						}}
+					/>
+				</Box>
+				<Box className={classes.section}>
+					<p
+						className="codepen"
+						data-height="250"
+						data-theme-id="dark"
+						data-default-tab="result"
+						data-user="urikalish"
+						data-slug-hash="yLVeGzq"
+						data-pen-title="yLVeGzq"
+						style={{
+							height: '250px',
+							boxSizing: 'border-box',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							border: '0 solid',
+							margin: '1em 0',
+							padding: '1em',
+						}}
+					/>
+				</Box>
 			</Box>
 		</Box>
 	);
