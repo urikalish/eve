@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { ServerContainer } from '../services/useServer';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import { useCurrentEffect } from 'use-current-effect';
 
 interface CodePenInfo {
 	title: string;
@@ -78,16 +79,19 @@ export const HomePage = memo(() => {
 
 	const { getFromServer } = ServerContainer.useContainer();
 
-	useEffect(() => {
+	useCurrentEffect((isCurrent) => {
 		(async () => {
 			const data = await getFromServer('/codepens');
-			if (!data) {
+			if (!data || !isCurrent()) {
 				return;
 			}
 			const codePenInfo: CodePenInfo[] = JSON.parse(data).codePens;
 			setCodePensInfo(codePenInfo);
 
 			setTimeout(() => {
+				if (!isCurrent()) {
+					return;
+				}
 				const sc = document.createElement('script');
 				sc.setAttribute('async', '""');
 				sc.setAttribute('src', 'https://cpwebassets.codepen.io/assets/embed/ei.js');
