@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMyTheme } from './services/themeHelper';
 import { MainPage } from './views/MainPage';
+import { ServerContainer } from './services/useServer';
 import './App.css';
 
 function App(): ReactElement {
@@ -13,9 +14,11 @@ function App(): ReactElement {
 		<>
 			<CssBaseline />
 			<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<MainPage />
-				</BrowserRouter>
+				<ServerContainer.Provider>
+					<BrowserRouter>
+						<MainPage />
+					</BrowserRouter>
+				</ServerContainer.Provider>
 			</ThemeProvider>
 		</>
 	);

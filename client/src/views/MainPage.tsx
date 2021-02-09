@@ -27,12 +27,23 @@ export const MainPage = memo(() => {
 			backgroundColor: '#000',
 			opacity: 0.5,
 		},
+		'@keyframes video-loop-color-animation': {
+			'0%': {
+				backgroundColor: 'hsl(0, 25%, 50%)',
+			},
+			'50%': {
+				backgroundColor: 'hsl(180, 75%, 50%)',
+			},
+			'100%': {
+				backgroundColor: 'hsl(360, 25%, 50%)',
+			},
+		},
 		videoShade2: {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
 			opacity: 0.25,
 			backgroundColor: '#000',
-			animation: 'video-loop-color-animation 20s linear infinite',
+			animation: '$video-loop-color-animation 10s linear infinite',
 		},
 		content: {
 			position: 'absolute',
