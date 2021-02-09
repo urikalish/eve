@@ -75,8 +75,7 @@ export const Masthead = memo(() => {
 			position: 'relative',
 			top: 16,
 			userSelect: 'none',
-			// filter: 'hue-rotate(-10deg)',
-			// animation: 'app-logo-color-animation 30s linear infinite alternate',
+			filter: 'drop-shadow(0 4px 4px #000)',
 		},
 		appTitle1: {
 			position: 'relative',
@@ -115,10 +114,7 @@ export const Masthead = memo(() => {
 						<List className={classes.list}>
 							{pageLinks.map((link, index) => (
 								<ListItem key={index} className={classes.listItem}>
-									<Link
-										to={link.to}
-										className={link.to === myLocation.pathname ? classes.currentPath : classes.link}
-									>
+									<Link to={link.to} className={link.to === myLocation.pathname ? classes.currentPath : classes.link}>
 										<ListItemText primary={link.text} />
 									</Link>
 								</ListItem>

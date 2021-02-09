@@ -54,11 +54,13 @@ export const MainPage = memo(() => {
 			color: theme.palette.text.primary,
 		},
 		mastheadContainer: {
+			position: 'relative',
 			height: 100,
 			maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
 			padding: '0 16px',
+			zIndex: 1,
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',

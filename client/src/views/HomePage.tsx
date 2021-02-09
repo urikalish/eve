@@ -1,7 +1,8 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { ServerContainer } from '../services/useServer';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 interface CodePenInfo {
 	title: string;
@@ -22,17 +23,47 @@ export const HomePage = memo(() => {
 			gridTemplateColumns: '1fr 1fr 1fr',
 			gridGap: 16,
 			opacity: 0,
-			animation: 'fade-in-animation 3s ease-in-out forwards',
+			animation: 'fade-in-animation 1s ease-in-out 3s forwards',
 		},
-		section: {
+		gridItem: {
 			position: 'relative',
+			height: 302,
+			border: '1px solid #ccc',
 			opacity: 0.9,
+			zIndex: 1,
+		},
+		gridItemHeader: {
+			display: 'grid',
+			gridTemplateColumns: 'auto 24px',
+			alignContent: 'center',
+			padding: '0 16px',
+			position: 'absolute',
+			left: 2,
+			right: 2,
+			top: 2,
+			height: 48,
+			backgroundColor: '#111',
+			zIndex: 1,
+		},
+		refreshIcon: {
+			cursor: 'pointer',
 		},
 		codePenTitle: {
-			position: 'absolute',
-			left: 9,
-			top: 46,
 			color: '#fff',
+			userSelect: 'none',
+		},
+		gridItemFooter: {
+			display: 'grid',
+			gridTemplateColumns: 'auto 24px',
+			alignContent: 'center',
+			padding: '0 16px',
+			position: 'absolute',
+			left: 2,
+			right: 2,
+			bottom: 2,
+			height: 28,
+			backgroundColor: '#111',
+			zIndex: 1,
 		},
 		blurCode: {
 			filter: 'blur(3px)',
@@ -42,6 +73,8 @@ export const HomePage = memo(() => {
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
+
+	const [activeTab] = useState<string>('result');
 
 	const { getFromServer } = ServerContainer.useContainer();
 
@@ -63,24 +96,40 @@ export const HomePage = memo(() => {
 		})();
 	}, []);
 
+	const handleClickRefresh = useCallback((event: React.MouseEvent<SVGElement>) => {
+		const item: HTMLElement | null = document.querySelector(`.grid-item-${event.currentTarget.dataset.id}`);
+		if (!item) {
+			return;
+		}
+		const iFrame = item.querySelector('iframe');
+		if (!iFrame) {
+			return;
+		}
+		iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
+	}, []);
+
 	return (
 		<Box id="HomePage" className={classes.root}>
 			<Box className={classes.grid}>
 				{codePensInfo.map((cpi, index) => {
 					return (
-						<Box key={index} className={`${classes.section}`}>
-							<Box className={classes.codePenTitle} style={{ color: cpi.color }}>
-								{cpi.title}
+						<Box key={index} className={`grid-item-${cpi.cpId} ${classes.gridItem}`}>
+							<Box className={classes.gridItemHeader}>
+								<Box className={classes.codePenTitle} style={{ color: cpi.color }}>
+									{cpi.title}
+								</Box>
+								<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-id={cpi.cpId} />
 							</Box>
 							<Box
 								className="codepen"
 								data-height="300"
 								data-theme-id="dark"
-								data-default-tab="result"
+								data-default-tab={activeTab}
 								data-pen-title={cpi.cpId}
 								data-user={cpi.cpUser}
 								data-slug-hash={cpi.cpId}
 							/>
+							<Box className={classes.gridItemFooter} />
 						</Box>
 					);
 				})}
