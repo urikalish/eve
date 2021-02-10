@@ -5,16 +5,6 @@ import { Typography } from '@material-ui/core';
 
 export const AboutPage = memo(() => {
 	const useStyles = makeStyles(() => ({
-		'@keyframes breath-animation': {
-			'0%': {
-				transform: 'rotateZ(-5deg)',
-				borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-			},
-			'100%': {
-				transform: 'rotateZ(5deg)',
-				borderRadius: '70% 30% 30% 70% / 30% 30% 70% 70%',
-			},
-		},
 		root: {
 			position: 'relative',
 			height: '100%',
@@ -25,15 +15,29 @@ export const AboutPage = memo(() => {
 			textAlign: 'center',
 			color: '#3fc',
 		},
+		// '@keyframes breath-animation': {
+		// 	'0%': {
+		// 		transform: 'rotateZ(-5deg)',
+		// 		boxShadow: '8px 8px 16px #3fc',
+		// 		borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+		// 	},
+		// 	'100%': {
+		// 		transform: 'rotateZ(5deg)',
+		// 		boxShadow: '8px 8px 16px #f3c',
+		// 		borderRadius: '70% 30% 30% 70% / 30% 30% 70% 70%',
+		// 	},
+		// },
 		background: {
 			backgroundColor: '#111',
-			backgroundImage: 'linear-gradient(135deg, #000 25%, #222 25%, #222 50%, #000 50%, #000 75%, #222 75%, #222 100%)',
+			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
-			padding: 60,
+			padding: 64,
 			opacity: '0.9',
-			animation: '$breath-animation 2.5s ease-in-out infinite alternate',
+			transform: 'rotateZ(-10deg)',
 			boxShadow: '8px 8px 16px #3fc',
-		}
+			borderRadius: '50%',
+			//animation: '$breath-animation 5s ease-in-out infinite alternate',
+		},
 	}));
 	const classes = useStyles();
 
@@ -41,7 +45,6 @@ export const AboutPage = memo(() => {
 		<Box id="AboutPage" className={classes.root}>
 			<Box className={classes.background}>
 				<Typography>by Uri Kalish</Typography>
-				<Typography>@2021</Typography>
 			</Box>
 		</Box>
 	);

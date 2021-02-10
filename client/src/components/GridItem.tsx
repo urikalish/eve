@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useRef } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
-import CodeIcon from '@material-ui/icons/Code';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo } from '../services/codePenInfo';
 
@@ -11,7 +10,7 @@ interface GridItemProps {
 }
 
 export const GridItem = memo(({ index, cpi }: GridItemProps) => {
-	const useStyles = makeStyles((theme) => ({
+	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
 			height: 302,
@@ -38,14 +37,16 @@ export const GridItem = memo(({ index, cpi }: GridItemProps) => {
 			height: 48,
 			display: 'flex',
 			alignItems: 'center',
-			backgroundColor: '#111',
+			backgroundColor: '#222',
+			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
+			backgroundSize: '24px 24px',
 			padding: '0 16px',
 			zIndex: 3,
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
 			fontSize: 16,
-			fontStyle: 'italic',
+			fontWeight: 700,
 			color: '#fff',
 			userSelect: 'none',
 		},
@@ -64,7 +65,9 @@ export const GridItem = memo(({ index, cpi }: GridItemProps) => {
 			right: 2,
 			bottom: 2,
 			height: 28,
-			backgroundColor: '#111',
+			backgroundColor: '#222',
+			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
+			backgroundSize: '24px 24px',
 			zIndex: 3,
 		},
 	}));
@@ -72,7 +75,7 @@ export const GridItem = memo(({ index, cpi }: GridItemProps) => {
 
 	const itemRef = useRef<HTMLDivElement>(null);
 
-	const handleClickRefresh = useCallback((event: React.MouseEvent<SVGElement>) => {
+	const handleClickRefresh = useCallback(() => {
 		if (!itemRef.current) {
 			return;
 		}

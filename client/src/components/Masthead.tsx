@@ -129,9 +129,7 @@ export const Masthead = memo(() => {
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
 					<Typography variant="h4" className={classes.appTitle2}>{`grid`}</Typography>
 				</Box>
-				<Box className={classes.rightPart}>
-					<Typography className={classes.link}>{`Login`}</Typography>
-				</Box>
+				<Box className={classes.rightPart} />
 			</Box>
 		</Box>
 	);

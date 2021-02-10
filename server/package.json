@@ -4,10 +4,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --write --config .prettierrc.js \"src/**/*.ts\"",
+    "format": "prettier --write --config .prettierrc.js \"src/**/*.ts\"",
     "lint": "eslint --quiet --fix \"src/**/*.ts\"",
     "tsc": "tsc",
-    "compile": "yarn prettier && yarn lint && yarn tsc",
+    "compile": "yarn format && yarn lint && yarn tsc",
     "dev": "yarn compile && nodemon"
   },
   "devDependencies": {
