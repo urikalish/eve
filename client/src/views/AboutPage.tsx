@@ -29,9 +29,9 @@ export const AboutPage = memo(() => {
 		// },
 		background: {
 			backgroundColor: '#111',
-			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
+			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
-			padding: 64,
+			padding: 40,
 			opacity: '0.9',
 			transform: 'rotateZ(-10deg)',
 			boxShadow: '8px 8px 16px #3fc',

@@ -7,9 +7,10 @@ import { CodePenInfo } from '../services/codePenInfo';
 interface GridItemProps {
 	index: number;
 	cpi: CodePenInfo;
+	showCode: boolean;
 }
 
-export const GridItem = memo(({ index, cpi }: GridItemProps) => {
+export const GridItem = memo(({ index, cpi, showCode }: GridItemProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
@@ -45,7 +46,7 @@ export const GridItem = memo(({ index, cpi }: GridItemProps) => {
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
-			fontSize: 16,
+			fontSize: 14,
 			fontWeight: 700,
 			color: '#fff',
 			userSelect: 'none',
@@ -93,23 +94,23 @@ export const GridItem = memo(({ index, cpi }: GridItemProps) => {
 				</Box>
 				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-item-index={index} />
 			</Box>
-			<Box id="js-container" className={classes.jsContainer}>
-				<Box
-					className="codepen"
-					data-height="300"
-					data-theme-id="dark"
-					data-default-tab="js"
-					data-pen-title={cpi.cpId}
-					data-user={cpi.cpUser}
-					data-slug-hash={cpi.cpId}
-				/>
-			</Box>
-			<Box id="result-container" className={classes.resultContainer}>
+			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
 				<Box
 					className="codepen"
 					data-height="300"
 					data-theme-id="dark"
 					data-default-tab="result"
+					data-pen-title={cpi.cpId}
+					data-user={cpi.cpUser}
+					data-slug-hash={cpi.cpId}
+				/>
+			</Box>
+			<Box id="js-container" className={classes.jsContainer} style={{ display: showCode ? 'block' : 'none' }}>
+				<Box
+					className="codepen"
+					data-height="300"
+					data-theme-id="dark"
+					data-default-tab="js"
 					data-pen-title={cpi.cpId}
 					data-user={cpi.cpUser}
 					data-slug-hash={cpi.cpId}

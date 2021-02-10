@@ -10,7 +10,7 @@ import { Typography } from '@material-ui/core';
 import hackerImage from '../images/hacker.png';
 
 export const Masthead = memo(() => {
-	const useStyles = makeStyles((theme) => ({
+	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
 			height: '100%',
@@ -109,7 +109,7 @@ export const Masthead = memo(() => {
 	};
 
 	return (
-		<Box id="Masthead" position="static" className={classes.root}>
+		<Box id="Masthead" className={classes.root}>
 			<Box className={classes.content}>
 				<Box className={classes.leftPart}>
 					<Box className={classes.navLinks}>

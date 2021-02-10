@@ -20,13 +20,13 @@
   }
 }
 
-#HomePage::-webkit-scrollbar {
+.grid-container::-webkit-scrollbar {
 	width: 0;
 	height: 0;
 }
-#HomePage::-webkit-scrollbar-track {
+.grid-container::-webkit-scrollbar-track {
 	background: #000;
 }
-#HomePage::-webkit-scrollbar-thumb {
+.grid-container::-webkit-scrollbar-thumb {
 	background: #aaa;
 }
