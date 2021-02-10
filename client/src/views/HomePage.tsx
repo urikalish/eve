@@ -47,6 +47,8 @@ export const HomePage = memo(() => {
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
+			fontSize: 16,
+			fontStyle: 'italic',
 			color: '#fff',
 			userSelect: 'none',
 		},
