@@ -1,9 +1,10 @@
 import React, { memo, useCallback, useState } from 'react';
+import { useCurrentEffect } from 'use-current-effect';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { ServerContainer } from '../services/useServer';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { useCurrentEffect } from 'use-current-effect';
+import CodeIcon from '@material-ui/icons/Code';
 
 interface CodePenInfo {
 	title: string;
@@ -33,6 +34,17 @@ export const HomePage = memo(() => {
 			opacity: 0.9,
 			zIndex: 1,
 		},
+		jsContainer: {
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+			filter: 'blur(3px)',
+		},
+		resultContainer: {
+			position: 'absolute',
+			width: '100%',
+			height: '100%',
+		},
 		gridItemHeader: {
 			position: 'absolute',
 			left: 2,
@@ -43,7 +55,7 @@ export const HomePage = memo(() => {
 			alignItems: 'center',
 			backgroundColor: '#111',
 			padding: '0 16px',
-			zIndex: 1,
+			zIndex: 3,
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
@@ -52,8 +64,13 @@ export const HomePage = memo(() => {
 			color: '#fff',
 			userSelect: 'none',
 		},
+		codeIcon: {
+			flex: '0 0 24px',
+			cursor: 'pointer',
+		},
 		refreshIcon: {
 			flex: '0 0 24px',
+			marginLeft: 8,
 			cursor: 'pointer',
 		},
 		gridItemFooter: {
@@ -63,15 +80,13 @@ export const HomePage = memo(() => {
 			bottom: 2,
 			height: 28,
 			backgroundColor: '#111',
-			zIndex: 1,
+			zIndex: 3,
 		},
 		content: {},
 	}));
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-
-	const [activeTab] = useState<string>('result');
 
 	const { getFromServer } = ServerContainer.useContainer();
 
@@ -97,15 +112,29 @@ export const HomePage = memo(() => {
 	}, []);
 
 	const handleClickRefresh = useCallback((event: React.MouseEvent<SVGElement>) => {
-		const item: HTMLElement | null = document.querySelector(`.grid-item-${event.currentTarget.dataset.id}`);
+		const item: HTMLElement | null = document.querySelector(`.grid-item-${event.currentTarget.dataset.itemIndex}`);
 		if (!item) {
 			return;
 		}
-		const iFrame = item.querySelector('iframe');
-		if (!iFrame) {
+		const iFrames = item.querySelectorAll('iframe');
+		iFrames.forEach((iFrame) => {
+			iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
+		});
+	}, []);
+
+	const handleClickCode = useCallback((event: React.MouseEvent<SVGElement>) => {
+		const item: HTMLElement | null = document.querySelector(`.grid-item-${event.currentTarget.dataset.itemIndex}`);
+		if (!item) {
 			return;
 		}
-		iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
+		const jsContainer = item.querySelector('#js-container');
+		if (jsContainer) {
+			(jsContainer as HTMLElement).style.zIndex = '2';
+		}
+		const resultContainer = item.querySelector('#result-container');
+		if (resultContainer) {
+			(resultContainer as HTMLElement).style.zIndex = '1';
+		}
 	}, []);
 
 	return (
@@ -113,22 +142,36 @@ export const HomePage = memo(() => {
 			<Box className={classes.grid}>
 				{codePensInfo.map((cpi, index) => {
 					return (
-						<Box key={index} className={`grid-item-${cpi.cpId} ${classes.gridItem}`}>
+						<Box key={index} className={`grid-item-${index} ${classes.gridItem}`}>
 							<Box className={classes.gridItemHeader}>
 								<Box className={classes.codePenTitle} style={{ color: cpi.color }}>
 									{cpi.title}
 								</Box>
-								<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-id={cpi.cpId} />
+								<CodeIcon className={classes.codeIcon} onClick={handleClickCode} data-item-index={index} />
+								<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-item-index={index} />
 							</Box>
-							<Box
-								className="codepen"
-								data-height="300"
-								data-theme-id="dark"
-								data-default-tab={activeTab}
-								data-pen-title={cpi.cpId}
-								data-user={cpi.cpUser}
-								data-slug-hash={cpi.cpId}
-							/>
+							<Box id="js-container" className={classes.jsContainer}>
+								<Box
+									className="codepen"
+									data-height="300"
+									data-theme-id="dark"
+									data-default-tab="js"
+									data-pen-title={cpi.cpId}
+									data-user={cpi.cpUser}
+									data-slug-hash={cpi.cpId}
+								/>
+							</Box>
+							<Box id="result-container" className={classes.resultContainer}>
+								<Box
+									className="codepen"
+									data-height="300"
+									data-theme-id="dark"
+									data-default-tab="result"
+									data-pen-title={cpi.cpId}
+									data-user={cpi.cpUser}
+									data-slug-hash={cpi.cpId}
+								/>
+							</Box>
 							<Box className={classes.gridItemFooter} />
 						</Box>
 					);
