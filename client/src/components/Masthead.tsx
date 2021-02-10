@@ -125,7 +125,7 @@ export const Masthead = memo(() => {
 				<Box onClick={handleClickHomeIcon} className={classes.centerPart}>
 					<Typography variant="h4" className={classes.appTitle1}>{`code`}</Typography>
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
-					<Typography variant="h4" className={classes.appTitle2}>{`grid`}</Typography>
+					<Typography variant="h4" className={classes.appTitle2}>{`race`}</Typography>
 				</Box>
 				<Box className={classes.rightPart}>
 					<Typography className={classes.link}>{`Login`}</Typography>

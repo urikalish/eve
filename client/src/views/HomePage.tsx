@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { ServerContainer } from '../services/useServer';
@@ -34,30 +34,27 @@ export const HomePage = memo(() => {
 			zIndex: 1,
 		},
 		gridItemHeader: {
-			display: 'grid',
-			gridTemplateColumns: 'auto 24px',
-			alignContent: 'center',
-			padding: '0 16px',
 			position: 'absolute',
 			left: 2,
 			right: 2,
 			top: 2,
 			height: 48,
+			display: 'flex',
+			alignItems: 'center',
 			backgroundColor: '#111',
+			padding: '0 16px',
 			zIndex: 1,
 		},
-		refreshIcon: {
-			cursor: 'pointer',
-		},
 		codePenTitle: {
+			flex: '1 1 auto',
 			color: '#fff',
 			userSelect: 'none',
 		},
+		refreshIcon: {
+			flex: '0 0 24px',
+			cursor: 'pointer',
+		},
 		gridItemFooter: {
-			display: 'grid',
-			gridTemplateColumns: 'auto 24px',
-			alignContent: 'center',
-			padding: '0 16px',
 			position: 'absolute',
 			left: 2,
 			right: 2,
@@ -65,9 +62,6 @@ export const HomePage = memo(() => {
 			height: 28,
 			backgroundColor: '#111',
 			zIndex: 1,
-		},
-		blurCode: {
-			filter: 'blur(3px)',
 		},
 		content: {},
 	}));
