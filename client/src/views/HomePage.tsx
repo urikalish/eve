@@ -18,8 +18,8 @@ export const HomePage = memo(() => {
 			display: 'grid',
 			gridTemplateColumns: '1fr 1fr 1fr',
 			gridGap: 16,
-			opacity: 0,
-			animation: 'fade-in-animation 1s ease-in-out 3s forwards',
+			opacity: 1,
+			//animation: 'fade-in-animation 1s ease-in-out 5s forwards',
 		},
 	}));
 	const classes = useStyles();
