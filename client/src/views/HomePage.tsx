@@ -14,7 +14,7 @@ export const HomePage = memo(() => {
 			height: '100%',
 			display: 'grid',
 			gridTemplateColumns: '1fr',
-			gridTemplateRows: '30px auto',
+			gridTemplateRows: '40px auto',
 			rowGap: 16,
 		},
 		toolbarContainer: {},
@@ -25,7 +25,6 @@ export const HomePage = memo(() => {
 			display: 'grid',
 			gridTemplateColumns: '1fr 1fr 1fr',
 			gridGap: 16,
-			opacity: 1,
 			//animation: 'fade-in-animation 1s ease-in-out 5s forwards',
 		},
 	}));
