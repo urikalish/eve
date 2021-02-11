@@ -7,11 +7,11 @@ import { CodePenInfo } from '../services/codePenInfo';
 interface GridItemProps {
 	index: number;
 	cpi: CodePenInfo;
-	itemHeight: number;
+	height: number;
 	showCode: boolean;
 }
 
-export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProps) => {
+export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
@@ -49,6 +49,9 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 			fontSize: 14,
 			fontWeight: 700,
 			color: '#fff',
+			whiteSpace: 'nowrap',
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
 			userSelect: 'none',
 		},
 		codeIcon: {
@@ -82,10 +85,10 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 		}
 		const iFrames = itemRef.current.querySelectorAll('iframe');
 		iFrames.forEach((iFrame) => {
-			iFrame.setAttribute('height', itemHeight.toString());
+			iFrame.setAttribute('height', height.toString());
 			iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
 		});
-	}, [itemHeight]);
+	}, [height]);
 
 	const handleClickRefresh = useCallback(() => {
 		if (!itemRef.current) {
@@ -98,9 +101,9 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 	}, []);
 
 	return (
-		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: itemHeight + 2 }}>
+		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
 			<Box className={classes.gridItemHeader}>
-				<Box className={classes.codePenTitle} style={{ color: cpi.color }}>
+				<Box className={classes.codePenTitle} style={{ color: cpi.color }} title={cpi.title}>
 					{cpi.title}
 				</Box>
 				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-item-index={index} />
@@ -108,7 +111,7 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
 				<Box
 					className="codepen"
-					data-height={itemHeight}
+					data-height={height}
 					data-theme-id="dark"
 					data-default-tab="result"
 					data-pen-title={cpi.cpId}
@@ -119,7 +122,7 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 			<Box id="js-container" className={classes.jsContainer} style={{ display: showCode ? 'block' : 'none' }}>
 				<Box
 					className="codepen"
-					data-height={itemHeight}
+					data-height={height}
 					data-theme-id="dark"
 					data-default-tab="js"
 					data-pen-title={cpi.cpId}

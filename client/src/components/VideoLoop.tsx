@@ -8,7 +8,7 @@ interface VideoLoopProps {
 	blurPixels?: number;
 }
 
-export const VideoLoop = memo(({ videoName, playbackSpeed, blurPixels }: VideoLoopProps) => {
+export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0 }: VideoLoopProps) => {
 	const useStyles = makeStyles((/*theme*/) => ({
 		root: {
 			position: 'absolute',
@@ -33,10 +33,10 @@ export const VideoLoop = memo(({ videoName, playbackSpeed, blurPixels }: VideoLo
 
 	useEffect(() => {
 		if (videoRef && videoRef.current) {
-			if (playbackSpeed && playbackSpeed < 1) {
+			if (playbackSpeed < 1) {
 				videoRef.current.playbackRate = playbackSpeed;
 			}
-			if (blurPixels && blurPixels > 0) {
+			if (blurPixels > 0) {
 				videoRef.current.style.filter = `blur(${blurPixels}px`;
 			}
 		}

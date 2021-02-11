@@ -1,5 +1,5 @@
 export class Helper {
-	static loadCodePenScript() {
+	static loadCodePenScript(): void {
 		const script = document.createElement('script');
 		script.setAttribute('id', 'codePenEmbedScript');
 		script.setAttribute('async', '""');

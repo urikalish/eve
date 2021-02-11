@@ -8,9 +8,10 @@ interface GridToolbarProps {
 	onClickRefresh: () => void;
 	onClickCode: () => void;
 	onClickColumns: (numberOfColumns: number) => void;
+	onClickRatio: (aspectRatio: number) => void;
 }
 
-export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns }: GridToolbarProps) => {
+export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns, onClickRatio }: GridToolbarProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
@@ -22,12 +23,12 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns }
 		},
 		actionButton: {
 			backgroundColor: '#000',
-			width: 40,
+			width: 36,
 			height: 24,
 			borderRadius: 4,
 			textAlign: 'center',
 			lineHeight: '24px',
-			marginRight: 8,
+			marginRight: 4,
 			cursor: 'pointer',
 		},
 		extraSpace: {
@@ -51,25 +52,39 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns }
 		}
 	}, []);
 
+	const handleClickRatio = useCallback((event: React.MouseEvent<HTMLElement>) => {
+		if (event.currentTarget.dataset && event.currentTarget.dataset.ratio) {
+			const aspectRatio = parseFloat(event.currentTarget.dataset.ratio);
+			onClickRatio(aspectRatio);
+		}
+	}, []);
+
 	return (
 		<Box id="GridToolbar" className={classes.root}>
 			<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
 			<CodeIcon onClick={handleClickCode} className={`${classes.actionButton} ${classes.extraSpace}`} />
-			<Box data-columns={1} onClick={handleClickColumns} className={`${classes.actionButton} ${classes.extraSpace}`}>
-				1
-			</Box>
-			<Box data-columns={2} onClick={handleClickColumns} className={classes.actionButton}>
-				2
-			</Box>
-			<Box data-columns={3} onClick={handleClickColumns} className={classes.actionButton}>
-				3
-			</Box>
-			<Box data-columns={4} onClick={handleClickColumns} className={classes.actionButton}>
-				4
-			</Box>
-			<Box data-columns={5} onClick={handleClickColumns} className={classes.actionButton}>
-				5
-			</Box>
+			{[1, 2, 3, 4, 5, 6].map((colNum, index) => (
+				<Box data-columns={colNum} onClick={handleClickColumns} className={`${classes.actionButton} ${index === 0 ? classes.extraSpace : ''}`}>
+					{colNum}
+				</Box>
+			))}
+			{[
+				['1:4', 1/4],
+				['1:3', 1/3],
+				['1:2', 1/2],
+				['2:3', 2/3],
+				['3:4', 3/4],
+				['1:1', 1],
+				['4:3', 4/3],
+				['3:2', 3/2],
+				['2:1', 2],
+				['3:1', 3],
+				['4:1', 4],
+			].map((aspectRatio, index) => (
+				<Box data-ratio={aspectRatio[1]} onClick={handleClickRatio} className={`${classes.actionButton} ${index === 0 ? classes.extraSpace : ''}`}>
+					{aspectRatio[0]}
+				</Box>
+			))}
 		</Box>
 	);
 });

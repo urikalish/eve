@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useMemo } from 'react';
 import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
@@ -30,11 +30,16 @@ export const HomePage = memo(() => {
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-	const [columnNumber, setColumnNumber] = useState<number>(3);
-	const [rowHeight, setRowHeight] = useState<number>(300);
+	const [numOfCols, setNumOfCols] = useState<number>(4);
+	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 
 	const { getFromServer } = ServerContainer.useContainer();
+
+	const itemHeight = useMemo(() => {
+		const width = (1248 - 16 * (numOfCols - 1)) / numOfCols;
+		return Math.ceil(width / aspectRatio + 78);
+	}, [numOfCols, aspectRatio]);
 
 	useCurrentEffect((isCurrent) => {
 		(async () => {
@@ -64,21 +69,29 @@ export const HomePage = memo(() => {
 		setShowCode((val) => !val);
 	}, []);
 
-	const handleClickColumns = useCallback((numberOfColumns: number) => {
-		setColumnNumber(numberOfColumns);
-		setRowHeight([600, 450, 300, 250, 200][numberOfColumns - 1]);
+	const handleClickColumns = useCallback((numOfCols: number) => {
+		setNumOfCols(numOfCols);
+	}, []);
+
+	const handleClickRatio = useCallback((aspectRatio: number) => {
+		setAspectRatio(aspectRatio);
 	}, []);
 
 	return (
 		<Box id="HomePage" className={classes.root}>
 			<Box className={classes.toolbarContainer}>
-				<GridToolbar onClickRefresh={handleClickRefresh} onClickCode={handleClickCode} onClickColumns={handleClickColumns} />
+				<GridToolbar
+					onClickRefresh={handleClickRefresh}
+					onClickCode={handleClickCode}
+					onClickColumns={handleClickColumns}
+					onClickRatio={handleClickRatio}
+				/>
 			</Box>
 			<Box className={`grid-container ${classes.gridContainer}`}>
-				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
-					{codePensInfo.map((cpi, index) => {
-						return <GridItem key={index} index={index} cpi={cpi} itemHeight={rowHeight} showCode={showCode} />;
-					})}
+				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${numOfCols},1fr)` }}>
+					{codePensInfo.map((cpi, index) => (
+						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} />
+					))}
 				</Box>
 			</Box>
 		</Box>

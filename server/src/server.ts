@@ -40,6 +40,12 @@ class Server {
 				cpUser: 'urikalish',
 				cpId: 'ZEBGVVY',
 			},
+			{
+				title: 'Cyan Hacker',
+				color: '#0ff',
+				cpUser: 'urikalish',
+				cpId: 'QWErXRe',
+			},
 		];
 		res.send({ codePens });
 	}
