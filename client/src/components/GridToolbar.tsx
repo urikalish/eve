@@ -7,9 +7,10 @@ import CodeIcon from '@material-ui/icons/Code';
 interface GridToolbarProps {
 	onClickRefresh: () => void;
 	onClickCode: () => void;
+	onClickColumns: (numberOfColumns: number) => void;
 }
 
-export const GridToolbar = memo(({ onClickRefresh, onClickCode }: GridToolbarProps) => {
+export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns }: GridToolbarProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
@@ -21,7 +22,7 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode }: GridToolbarPro
 		},
 		actionButton: {
 			backgroundColor: '#000',
-			width: 24,
+			width: 40,
 			height: 24,
 			borderRadius: 4,
 			textAlign: 'center',
@@ -43,15 +44,32 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode }: GridToolbarPro
 		onClickCode();
 	}, []);
 
+	const handleClickColumns = useCallback((event: React.MouseEvent<HTMLElement>) => {
+		if (event.currentTarget.dataset && event.currentTarget.dataset.columns) {
+			const numberOfColumns = parseInt(event.currentTarget.dataset.columns);
+			onClickColumns(numberOfColumns);
+		}
+	}, []);
+
 	return (
 		<Box id="GridToolbar" className={classes.root}>
 			<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
 			<CodeIcon onClick={handleClickCode} className={`${classes.actionButton} ${classes.extraSpace}`} />
-			<Box className={`${classes.actionButton} ${classes.extraSpace}`}>1</Box>
-			<Box className={classes.actionButton}>2</Box>
-			<Box className={classes.actionButton}>3</Box>
-			<Box className={classes.actionButton}>4</Box>
-			<Box className={classes.actionButton}>5</Box>
+			<Box data-columns={1} onClick={handleClickColumns} className={`${classes.actionButton} ${classes.extraSpace}`}>
+				1
+			</Box>
+			<Box data-columns={2} onClick={handleClickColumns} className={classes.actionButton}>
+				2
+			</Box>
+			<Box data-columns={3} onClick={handleClickColumns} className={classes.actionButton}>
+				3
+			</Box>
+			<Box data-columns={4} onClick={handleClickColumns} className={classes.actionButton}>
+				4
+			</Box>
+			<Box data-columns={5} onClick={handleClickColumns} className={classes.actionButton}>
+				5
+			</Box>
 		</Box>
 	);
 });

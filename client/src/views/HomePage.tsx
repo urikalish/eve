@@ -23,7 +23,6 @@ export const HomePage = memo(() => {
 		},
 		grid: {
 			display: 'grid',
-			gridTemplateColumns: '1fr 1fr 1fr',
 			gridGap: 16,
 			//animation: 'fade-in-animation 1s ease-in-out 5s forwards',
 		},
@@ -31,7 +30,7 @@ export const HomePage = memo(() => {
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-
+	const [columnNumber, setColumnNumber] = useState<number>(3);
 	const [showCode, setShowCode] = useState<boolean>(false);
 
 	const { getFromServer } = ServerContainer.useContainer();
@@ -64,13 +63,17 @@ export const HomePage = memo(() => {
 		setShowCode((val) => !val);
 	}, []);
 
+	const handleClickColumns = useCallback((numberOfColumns: number) => {
+		setColumnNumber(numberOfColumns);
+	}, []);
+
 	return (
 		<Box id="HomePage" className={classes.root}>
 			<Box className={classes.toolbarContainer}>
-				<GridToolbar onClickRefresh={handleClickRefresh} onClickCode={handleClickCode} />
+				<GridToolbar onClickRefresh={handleClickRefresh} onClickCode={handleClickCode} onClickColumns={handleClickColumns} />
 			</Box>
 			<Box className={`grid-container ${classes.gridContainer}`}>
-				<Box className={classes.grid}>
+				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
 					{codePensInfo.map((cpi, index) => {
 						return <GridItem key={index} index={index} cpi={cpi} showCode={showCode} />;
 					})}
