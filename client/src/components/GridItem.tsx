@@ -1,4 +1,4 @@
-import React, {memo, useRef, useEffect, useCallback} from 'react';
+import React, { memo, useRef, useEffect, useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -98,7 +98,7 @@ export const GridItem = memo(({ index, cpi, itemHeight, showCode }: GridItemProp
 	}, []);
 
 	return (
-		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{height: itemHeight + 2}}>
+		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: itemHeight + 2 }}>
 			<Box className={classes.gridItemHeader}>
 				<Box className={classes.codePenTitle} style={{ color: cpi.color }}>
 					{cpi.title}
