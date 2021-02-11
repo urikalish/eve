@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState, useCallback } from 'react';
 import { useCurrentEffect } from 'use-current-effect';
-import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@material-ui/core/Box/Box';
 import { ServerContainer } from '../services/useServer';
 import { CodePenInfo } from '../services/codePenInfo';
 import { Helper } from '../services/helper';
@@ -31,6 +31,7 @@ export const HomePage = memo(() => {
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
 	const [columnNumber, setColumnNumber] = useState<number>(3);
+	const [rowHeight, setRowHeight] = useState<number>(300);
 	const [showCode, setShowCode] = useState<boolean>(false);
 
 	const { getFromServer } = ServerContainer.useContainer();
@@ -65,6 +66,7 @@ export const HomePage = memo(() => {
 
 	const handleClickColumns = useCallback((numberOfColumns: number) => {
 		setColumnNumber(numberOfColumns);
+		setRowHeight([600, 450, 300, 250, 200][numberOfColumns - 1]);
 	}, []);
 
 	return (
@@ -75,7 +77,7 @@ export const HomePage = memo(() => {
 			<Box className={`grid-container ${classes.gridContainer}`}>
 				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
 					{codePensInfo.map((cpi, index) => {
-						return <GridItem key={index} index={index} cpi={cpi} showCode={showCode} />;
+						return <GridItem key={index} index={index} cpi={cpi} itemHeight={rowHeight} showCode={showCode} />;
 					})}
 				</Box>
 			</Box>
