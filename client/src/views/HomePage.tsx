@@ -33,7 +33,7 @@ export const HomePage = memo(() => {
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-	const [columnNumber, setColumnNumber] = useState<number>(4);
+	const [columnNumber, setColumnNumber] = useState<number>(3);
 	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 

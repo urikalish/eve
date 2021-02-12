@@ -36,6 +36,7 @@ export const AboutPage = memo(() => {
 			transform: 'rotateZ(-10deg)',
 			boxShadow: '8px 8px 16px #3fc',
 			borderRadius: '50%',
+			userSelect: 'none',
 			//animation: '$breath-animation 5s ease-in-out infinite alternate',
 		},
 	}));

@@ -1,7 +1,9 @@
 import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo } from '../services/codePenInfo';
 
@@ -44,12 +46,12 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			backgroundColor: '#222',
 			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
-			padding: '0 16px',
+			padding: '0 8px 0 16px',
 			zIndex: 3,
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
-			fontSize: 14,
+			fontSize: 13,
 			fontWeight: 700,
 			color: '#fff',
 			whiteSpace: 'nowrap',
@@ -57,18 +59,9 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			textOverflow: 'ellipsis',
 			userSelect: 'none',
 		},
-		codeIcon: {
+		actionButton: {
 			flex: '0 0 24px',
-			cursor: 'pointer',
-		},
-		visibilityIcon: {
-			flex: '0 0 24px',
-			marginLeft: 8,
-			cursor: 'pointer',
-		},
-		refreshIcon: {
-			flex: '0 0 24px',
-			marginLeft: 8,
+			marginLeft: 4,
 			cursor: 'pointer',
 		},
 		gridItemFooter: {
@@ -85,7 +78,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}));
 	const classes = useStyles();
 
-	const [blurCode, setBlueCode] = useState<boolean>(true);
+	const [blurCode, setBlurCode] = useState<boolean>(true);
 	const itemRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -100,7 +93,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}, [height]);
 
 	const handleClickBlur = useCallback(() => {
-		setBlueCode((val) => !val);
+		setBlurCode((val) => !val);
 	}, []);
 
 	const handleClickRefresh = useCallback(() => {
@@ -113,14 +106,21 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		});
 	}, []);
 
+	const handleNavigateToCodePen = useCallback(() => {
+		const url = `https://codepen.io/${cpi.cpUser}/pen/${cpi.cpId}`;
+		window.open(url, '_blank');
+	}, []);
+
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
 			<Box className={classes.gridItemHeader}>
 				<Box className={classes.codePenTitle} style={{ color: cpi.color }} title={cpi.title}>
 					{cpi.title}
 				</Box>
-				<VisibilityOutlinedIcon className={classes.visibilityIcon} onClick={handleClickBlur} />
-				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} />
+				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Show code" />}
+				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
+				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
+				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 			</Box>
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
 				<Box

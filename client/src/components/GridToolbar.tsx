@@ -3,6 +3,9 @@ import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CodeIcon from '@material-ui/icons/Code';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { Typography } from '@material-ui/core';
 
 interface GridToolbarProps {
 	options: {
@@ -25,24 +28,32 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			position: 'relative',
 			height: '100%',
 			padding: '8px 0',
+			opacity: '0.75',
+			userSelect: 'none',
+		},
+		panel: {
+			display: 'flex',
+			alignItems: 'center',
+			height: 24,
+			borderRadius: 12,
+			backgroundColor: '#111',
+			padding: '0 4px',
+			marginRight: 24,
+		},
+		panelText: {
+			lineHeight: '24px',
+			color: '#999',
 		},
 		actionButton: {
-			backgroundColor: '#000',
-			width: 36,
+			width: 24,
 			height: 24,
-			borderRadius: 4,
 			textAlign: 'center',
-			lineHeight: '24px',
-			marginRight: 4,
+			margin: '0 4px',
 			cursor: 'pointer',
-			userSelect: 'none',
 		},
 		actionButtonDisabled: {
 			pointerEvents: 'none',
-			opacity: 0.25,
-		},
-		extraSpace: {
-			marginLeft: 24,
+			color: '#999',
 		},
 	}));
 	const classes = useStyles();
@@ -73,25 +84,31 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 
 	return (
 		<Box id="GridToolbar" className={classes.root}>
-			<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
-			<CodeIcon onClick={handleClickCode} className={`${classes.actionButton} ${classes.extraSpace}`} />
-			<Box
-				onClick={handleClickIncColumnNumber}
-				className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
-			>
-				S+
+			<Box className={`${classes.panel}`}>
+				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
+				<CodeIcon onClick={handleClickCode} className={`${classes.actionButton}`} />
 			</Box>
-			<Box onClick={handleClickDecColumnNumber} className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}>
-				S-
+			<Box className={`${classes.panel}`}>
+				<RemoveIcon
+					onClick={handleClickDecColumnNumber}
+					className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled} `}
+				/>
+				<Typography className={classes.panelText}>Size</Typography>
+				<AddIcon
+					onClick={handleClickIncColumnNumber}
+					className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} `}
+				/>
 			</Box>
-			<Box
-				onClick={handleClickIncAspectRatio}
-				className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
-			>
-				H+
-			</Box>
-			<Box onClick={handleClickDecAspectRatio} className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled}`}>
-				H-
+			<Box className={`${classes.panel}`}>
+				<RemoveIcon
+					onClick={handleClickDecAspectRatio}
+					className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled} `}
+				/>
+				<Typography className={classes.panelText}>Height</Typography>
+				<AddIcon
+					onClick={handleClickIncAspectRatio}
+					className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled}`}
+				/>
 			</Box>
 		</Box>
 	);
