@@ -2,6 +2,7 @@ import * as http from 'http';
 import express = require('express');
 import { Request, Response } from 'express';
 import { Logger } from './logger';
+import {CodePens} from "./codePens";
 
 class Server {
 	private DEFAULT_PORT = 4000;
@@ -21,32 +22,7 @@ class Server {
 
 	handleGetCodePensRequest(req: Request, res: Response) {
 		Logger.log(`Server.handleGetCodePensRequest()`);
-		const codePens = [
-			{
-				title: 'Green Hacker',
-				color: '#0f0',
-				cpUser: 'urikalish',
-				cpId: 'yLVeGzq',
-			},
-			{
-				title: 'Yellow Hacker',
-				color: '#ff0',
-				cpUser: 'urikalish',
-				cpId: 'RworEBK',
-			},
-			{
-				title: 'Red Hacker',
-				color: '#f00',
-				cpUser: 'urikalish',
-				cpId: 'ZEBGVVY',
-			},
-			{
-				title: 'Cyan Hacker',
-				color: '#0ff',
-				cpUser: 'urikalish',
-				cpId: 'QWErXRe',
-			},
-		];
+		const codePens = CodePens.getCodePens();
 		res.send({ codePens });
 	}
 
