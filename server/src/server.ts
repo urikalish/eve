@@ -2,7 +2,7 @@ import * as http from 'http';
 import express = require('express');
 import { Request, Response } from 'express';
 import { Logger } from './logger';
-import {CodePens} from "./codePens";
+import { CodePens } from './codePens';
 
 class Server {
 	private DEFAULT_PORT = 4000;
