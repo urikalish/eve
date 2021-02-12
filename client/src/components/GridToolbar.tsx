@@ -25,7 +25,6 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			position: 'relative',
 			height: '100%',
 			padding: '8px 0',
-			opacity: 0.5,
 		},
 		actionButton: {
 			backgroundColor: '#000',
@@ -40,7 +39,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 		},
 		actionButtonDisabled: {
 			pointerEvents: 'none',
-			opacity: 0.4,
+			opacity: 0.25,
 		},
 		extraSpace: {
 			marginLeft: 24,

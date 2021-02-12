@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect, useCallback } from 'react';
+import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
@@ -24,6 +24,8 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			position: 'absolute',
 			width: '100%',
 			height: '100%',
+		},
+		blurCode: {
 			filter: 'blur(3px)',
 		},
 		resultContainer: {
@@ -83,6 +85,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}));
 	const classes = useStyles();
 
+	const [blurCode, setBlueCode] = useState<boolean>(true);
 	const itemRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -96,8 +99,8 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		});
 	}, [height]);
 
-	const handleClickVisibility = useCallback(() => {
-		alert('yo');
+	const handleClickBlur = useCallback(() => {
+		setBlueCode((val) => !val);
 	}, []);
 
 	const handleClickRefresh = useCallback(() => {
@@ -116,7 +119,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				<Box className={classes.codePenTitle} style={{ color: cpi.color }} title={cpi.title}>
 					{cpi.title}
 				</Box>
-				<VisibilityOutlinedIcon className={classes.visibilityIcon} onClick={handleClickVisibility} />
+				<VisibilityOutlinedIcon className={classes.visibilityIcon} onClick={handleClickBlur} />
 				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} />
 			</Box>
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
@@ -130,7 +133,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 					data-slug-hash={cpi.cpId}
 				/>
 			</Box>
-			<Box id="js-container" className={classes.jsContainer} style={{ display: showCode ? 'block' : 'none' }}>
+			<Box id="js-container" className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`} style={{ display: showCode ? 'block' : 'none' }}>
 				<Box
 					className="codepen"
 					data-height={height}
