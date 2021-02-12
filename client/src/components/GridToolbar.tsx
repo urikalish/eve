@@ -13,11 +13,11 @@ interface GridToolbarProps {
 	};
 	onClickRefresh: () => void;
 	onClickCode: () => void;
-	onChangeWidth: (inc: boolean) => void;
-	onChangeHeight: (inc: boolean) => void;
+	onChangeColumnNumber: (inc: boolean) => void;
+	onChangeAspectRatio: (inc: boolean) => void;
 }
 
-export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChangeWidth, onChangeHeight }: GridToolbarProps) => {
+export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChangeColumnNumber, onChangeAspectRatio }: GridToolbarProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
@@ -56,20 +56,20 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 		onClickCode();
 	}, []);
 
-	const handleClickIncWidth = useCallback(() => {
-		onChangeWidth(true);
+	const handleClickIncColumnNumber = useCallback(() => {
+		onChangeColumnNumber(true);
 	}, []);
 
-	const handleClickDecWidth = useCallback(() => {
-		onChangeWidth(false);
+	const handleClickDecColumnNumber = useCallback(() => {
+		onChangeColumnNumber(false);
 	}, []);
 
-	const handleClickIncHeight = useCallback(() => {
-		onChangeHeight(true);
+	const handleClickIncAspectRatio = useCallback(() => {
+		onChangeAspectRatio(true);
 	}, []);
 
-	const handleClickDecHeight = useCallback(() => {
-		onChangeHeight(false);
+	const handleClickDecAspectRatio = useCallback(() => {
+		onChangeAspectRatio(false);
 	}, []);
 
 	return (
@@ -77,21 +77,21 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
 			<CodeIcon onClick={handleClickCode} className={`${classes.actionButton} ${classes.extraSpace}`} />
 			<Box
-				onClick={handleClickIncWidth}
+				onClick={handleClickIncColumnNumber}
 				className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
 			>
-				W+
+				S+
 			</Box>
-			<Box onClick={handleClickDecWidth} className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}>
-				W-
+			<Box onClick={handleClickDecColumnNumber} className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}>
+				S-
 			</Box>
 			<Box
-				onClick={handleClickIncHeight}
+				onClick={handleClickIncAspectRatio}
 				className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
 			>
 				H+
 			</Box>
-			<Box onClick={handleClickDecHeight} className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled}`}>
+			<Box onClick={handleClickDecAspectRatio} className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled}`}>
 				H-
 			</Box>
 		</Box>

@@ -1,6 +1,7 @@
 import React, { memo, useRef, useEffect, useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo } from '../services/codePenInfo';
 
@@ -58,6 +59,11 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			flex: '0 0 24px',
 			cursor: 'pointer',
 		},
+		visibilityIcon: {
+			flex: '0 0 24px',
+			marginLeft: 8,
+			cursor: 'pointer',
+		},
 		refreshIcon: {
 			flex: '0 0 24px',
 			marginLeft: 8,
@@ -90,6 +96,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		});
 	}, [height]);
 
+	const handleClickVisibility = useCallback(() => {
+		alert('yo');
+	}, []);
+
 	const handleClickRefresh = useCallback(() => {
 		if (!itemRef.current) {
 			return;
@@ -106,7 +116,8 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				<Box className={classes.codePenTitle} style={{ color: cpi.color }} title={cpi.title}>
 					{cpi.title}
 				</Box>
-				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} data-item-index={index} />
+				<VisibilityOutlinedIcon className={classes.visibilityIcon} onClick={handleClickVisibility} />
+				<RefreshIcon className={classes.refreshIcon} onClick={handleClickRefresh} />
 			</Box>
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
 				<Box
