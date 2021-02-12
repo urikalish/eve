@@ -8,6 +8,9 @@ import { Helper } from '../services/helper';
 import { GridToolbar } from '../components/GridToolbar';
 import { GridItem } from '../components/GridItem';
 
+const widthOptions: number[] = [1, 2, 3, 4, 5, 6];
+const heightOptions: number[] = [1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3, 4];
+
 export const HomePage = memo(() => {
 	const useStyles = makeStyles(() => ({
 		root: {
@@ -69,22 +72,28 @@ export const HomePage = memo(() => {
 		setShowCode((val) => !val);
 	}, []);
 
-	const handleClickColumns = useCallback((numOfCols: number) => {
-		setNumOfCols(numOfCols);
+	const handleChangeWidth = useCallback((inc: boolean) => {
+		setNumOfCols((val) => widthOptions[widthOptions.findIndex((v) => v === val) + (inc ? -1 : 1)]);
 	}, []);
 
-	const handleClickRatio = useCallback((aspectRatio: number) => {
-		setAspectRatio(aspectRatio);
+	const handleChangeHeight = useCallback((inc: boolean) => {
+		setAspectRatio((val) => heightOptions[heightOptions.findIndex((v) => v === val) + (inc ? -1 : 1)]);
 	}, []);
 
 	return (
 		<Box id="HomePage" className={classes.root}>
 			<Box className={classes.toolbarContainer}>
 				<GridToolbar
+					options={{
+						canIncWidth: numOfCols > widthOptions[0],
+						canDecWidth: numOfCols < widthOptions[widthOptions.length - 1],
+						canIncHeight: aspectRatio > heightOptions[0],
+						canDecHeight: aspectRatio < heightOptions[heightOptions.length - 1],
+					}}
 					onClickRefresh={handleClickRefresh}
 					onClickCode={handleClickCode}
-					onClickColumns={handleClickColumns}
-					onClickRatio={handleClickRatio}
+					onChangeWidth={handleChangeWidth}
+					onChangeHeight={handleChangeHeight}
 				/>
 			</Box>
 			<Box className={`grid-container ${classes.gridContainer}`}>

@@ -5,13 +5,19 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import CodeIcon from '@material-ui/icons/Code';
 
 interface GridToolbarProps {
+	options: {
+		canIncWidth: boolean;
+		canDecWidth: boolean;
+		canIncHeight: boolean;
+		canDecHeight: boolean;
+	};
 	onClickRefresh: () => void;
 	onClickCode: () => void;
-	onClickColumns: (numberOfColumns: number) => void;
-	onClickRatio: (aspectRatio: number) => void;
+	onChangeWidth: (inc: boolean) => void;
+	onChangeHeight: (inc: boolean) => void;
 }
 
-export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns, onClickRatio }: GridToolbarProps) => {
+export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChangeWidth, onChangeHeight }: GridToolbarProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
@@ -30,6 +36,11 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns, 
 			lineHeight: '24px',
 			marginRight: 4,
 			cursor: 'pointer',
+			userSelect: 'none',
+		},
+		actionButtonDisabled: {
+			pointerEvents: 'none',
+			opacity: 0.4,
 		},
 		extraSpace: {
 			marginLeft: 24,
@@ -45,46 +56,44 @@ export const GridToolbar = memo(({ onClickRefresh, onClickCode, onClickColumns, 
 		onClickCode();
 	}, []);
 
-	const handleClickColumns = useCallback((event: React.MouseEvent<HTMLElement>) => {
-		if (event.currentTarget.dataset && event.currentTarget.dataset.columns) {
-			const numberOfColumns = parseInt(event.currentTarget.dataset.columns);
-			onClickColumns(numberOfColumns);
-		}
+	const handleClickIncWidth = useCallback(() => {
+		onChangeWidth(true);
 	}, []);
 
-	const handleClickRatio = useCallback((event: React.MouseEvent<HTMLElement>) => {
-		if (event.currentTarget.dataset && event.currentTarget.dataset.ratio) {
-			const aspectRatio = parseFloat(event.currentTarget.dataset.ratio);
-			onClickRatio(aspectRatio);
-		}
+	const handleClickDecWidth = useCallback(() => {
+		onChangeWidth(false);
+	}, []);
+
+	const handleClickIncHeight = useCallback(() => {
+		onChangeHeight(true);
+	}, []);
+
+	const handleClickDecHeight = useCallback(() => {
+		onChangeHeight(false);
 	}, []);
 
 	return (
 		<Box id="GridToolbar" className={classes.root}>
 			<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
 			<CodeIcon onClick={handleClickCode} className={`${classes.actionButton} ${classes.extraSpace}`} />
-			{[1, 2, 3, 4, 5, 6].map((colNum, index) => (
-				<Box data-columns={colNum} onClick={handleClickColumns} className={`${classes.actionButton} ${index === 0 ? classes.extraSpace : ''}`}>
-					{colNum}
-				</Box>
-			))}
-			{[
-				['1:4', 1/4],
-				['1:3', 1/3],
-				['1:2', 1/2],
-				['2:3', 2/3],
-				['3:4', 3/4],
-				['1:1', 1],
-				['4:3', 4/3],
-				['3:2', 3/2],
-				['2:1', 2],
-				['3:1', 3],
-				['4:1', 4],
-			].map((aspectRatio, index) => (
-				<Box data-ratio={aspectRatio[1]} onClick={handleClickRatio} className={`${classes.actionButton} ${index === 0 ? classes.extraSpace : ''}`}>
-					{aspectRatio[0]}
-				</Box>
-			))}
+			<Box
+				onClick={handleClickIncWidth}
+				className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
+			>
+				W+
+			</Box>
+			<Box onClick={handleClickDecWidth} className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}>
+				W-
+			</Box>
+			<Box
+				onClick={handleClickIncHeight}
+				className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled} ${classes.extraSpace}`}
+			>
+				H+
+			</Box>
+			<Box onClick={handleClickDecHeight} className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled}`}>
+				H-
+			</Box>
 		</Box>
 	);
 });
