@@ -29,7 +29,6 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			height: '100%',
 			padding: '8px 0',
 			opacity: '0.75',
-			userSelect: 'none',
 		},
 		panel: {
 			display: 'flex',

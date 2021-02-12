@@ -14,11 +14,13 @@ const aspectRatioValues: number[] = [1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3
 export const HomePage = memo(() => {
 	const useStyles = makeStyles(() => ({
 		root: {
+			position: 'relative',
 			height: '100%',
 			display: 'grid',
 			gridTemplateColumns: '1fr',
 			gridTemplateRows: '40px auto',
 			rowGap: 16,
+			userSelect: 'none',
 		},
 		toolbarContainer: {},
 		gridContainer: {

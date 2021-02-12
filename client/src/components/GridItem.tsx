@@ -57,7 +57,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			whiteSpace: 'nowrap',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
-			userSelect: 'none',
 		},
 		actionButton: {
 			flex: '0 0 24px',
@@ -122,7 +121,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
 					{cpTitle}
 				</Box>
-				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Show code" />}
+				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
 				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
 				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
 				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />

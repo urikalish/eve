@@ -10,6 +10,7 @@ export const UnderConstruction = memo(() => {
 			backgroundImage: 'linear-gradient(135deg, #333 25%, #aa0 25%, #aa0 50%, #333 50%, #333 75%, #aa0 75%, #aa0 100%)',
 			backgroundSize: '40px 40px',
 			opacity: '0.8',
+			userSelect: 'none',
 		},
 		grid: {
 			height: '100%',
@@ -17,7 +18,6 @@ export const UnderConstruction = memo(() => {
 			justifyContent: 'center',
 			alignContent: 'center',
 			color: '#fff',
-			userSelect: 'none',
 		},
 	}));
 	const classes = useStyles();

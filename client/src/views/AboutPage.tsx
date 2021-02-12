@@ -13,6 +13,7 @@ export const AboutPage = memo(() => {
 			alignContent: 'center',
 			textAlign: 'center',
 			color: '#fff',
+			userSelect: 'none',
 		},
 	}));
 	const classes = useStyles();

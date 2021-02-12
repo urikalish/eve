@@ -13,13 +13,14 @@ export const Masthead = memo(() => {
 		root: {
 			position: 'relative',
 			height: '100%',
-			backgroundColor: 'transparent',
+			userSelect: 'none',
 		},
 		content: {
 			height: '100%',
 			display: 'flex',
 			justifyContent: 'space-between',
 			alignItems: 'center',
+			color: '#fff',
 		},
 		leftPart: {
 			display: 'flex',
@@ -46,7 +47,6 @@ export const Masthead = memo(() => {
 		},
 		link: {
 			textDecoration: 'none',
-			userSelect: 'none',
 			color: '#aaa',
 			'&:hover': {
 				color: '#ccc',
@@ -54,7 +54,6 @@ export const Masthead = memo(() => {
 		},
 		currentPath: {
 			textDecoration: 'none',
-			userSelect: 'none',
 			color: '#fff',
 			pointerEvents: 'none',
 		},
@@ -70,22 +69,17 @@ export const Masthead = memo(() => {
 			height: 80,
 			position: 'relative',
 			top: 16,
-			userSelect: 'none',
 			filter: 'drop-shadow(0 4px 4px #000)',
 		},
 		appTitle1: {
 			position: 'relative',
 			width: 75,
 			left: 35,
-			fontFamily: 'Macondo, Play, sans-serif',
-			userSelect: 'none',
 		},
 		appTitle2: {
 			position: 'relative',
 			width: 75,
 			left: -35,
-			fontFamily: 'Macondo, Play, sans-serif',
-			userSelect: 'none',
 		},
 		rightPart: {},
 	}));
@@ -126,9 +120,9 @@ export const Masthead = memo(() => {
 					</Box>
 				</Box>
 				<Box onClick={handleClickHomeIcon} className={classes.centerPart}>
-					<Typography variant="h4" className={classes.appTitle1}>{`code`}</Typography>
+					<Typography variant="h4" className={classes.appTitle1}>{`c0de`}</Typography>
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
-					<Typography variant="h4" className={classes.appTitle2}>{`grid`}</Typography>
+					<Typography variant="h4" className={classes.appTitle2}>{`gr1d`}</Typography>
 				</Box>
 				<Box className={classes.rightPart}>
 					<Box className={classes.navLinks}>
