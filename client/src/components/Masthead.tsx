@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import Box from '@material-ui/core/Box/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -45,22 +44,19 @@ export const Masthead = memo(() => {
 				paddingRight: 0,
 			},
 		},
-		currentPath: {
-			textDecoration: 'none',
-			userSelect: 'none',
-			color: `${blueGrey[100]}`,
-			'&:hover': {
-				color: `${blueGrey[100]}`,
-			},
-			pointerEvents: 'none',
-		},
 		link: {
 			textDecoration: 'none',
 			userSelect: 'none',
-			color: `${blueGrey[400]}`,
+			color: '#aaa',
 			'&:hover': {
-				color: `${blueGrey[300]}`,
+				color: '#ccc',
 			},
+		},
+		currentPath: {
+			textDecoration: 'none',
+			userSelect: 'none',
+			color: '#fff',
+			pointerEvents: 'none',
 		},
 		centerPart: {
 			position: 'absolute',
@@ -95,9 +91,14 @@ export const Masthead = memo(() => {
 	}));
 	const classes = useStyles();
 
-	const pageLinks = [
+	const leftLinks = [
 		{ text: 'Home', to: '/' },
 		{ text: 'About', to: '/about' },
+	];
+
+	const rightLinks = [
+		{ text: 'Setup', to: '/setup' },
+		{ text: 'Login', to: '/login' },
 	];
 
 	const myLocation = useLocation();
@@ -114,7 +115,7 @@ export const Masthead = memo(() => {
 				<Box className={classes.leftPart}>
 					<Box className={classes.navLinks}>
 						<List className={classes.list}>
-							{pageLinks.map((link, index) => (
+							{leftLinks.map((link, index) => (
 								<ListItem key={index} className={classes.listItem}>
 									<Link to={link.to} className={link.to === myLocation.pathname ? classes.currentPath : classes.link}>
 										<ListItemText primary={link.text} />
@@ -129,7 +130,19 @@ export const Masthead = memo(() => {
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
 					<Typography variant="h4" className={classes.appTitle2}>{`grid`}</Typography>
 				</Box>
-				<Box className={classes.rightPart} />
+				<Box className={classes.rightPart}>
+					<Box className={classes.navLinks}>
+						<List className={classes.list}>
+							{rightLinks.map((link, index) => (
+								<ListItem key={index} className={classes.listItem}>
+									<Link to={link.to} className={link.to === myLocation.pathname ? classes.currentPath : classes.link}>
+										<ListItemText primary={link.text} />
+									</Link>
+								</ListItem>
+							))}
+						</List>
+					</Box>
+				</Box>
 			</Box>
 		</Box>
 	);

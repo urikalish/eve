@@ -2,8 +2,10 @@ import React, { memo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { AboutPage } from './AboutPage';
 import { HomePage } from './HomePage';
+import { AboutPage } from './AboutPage';
+import { SetupPage } from './SetupPage';
+import { LoginPage } from './LoginPage';
 import { Masthead } from '../components/Masthead';
 import { VideoLoop } from '../components/VideoLoop';
 
@@ -88,6 +90,8 @@ export const MainPage = memo(() => {
 					<Switch>
 						<Route path="/home" exact component={HomePage} />
 						<Route path="/about" exact component={AboutPage} />
+						<Route path="/setup" exact component={SetupPage} />
+						<Route path="/login" exact component={LoginPage} />
 						<Route component={HomePage} />
 					</Switch>
 				</Box>

@@ -42,7 +42,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 		},
 		panelText: {
 			lineHeight: '24px',
-			color: '#999',
+			color: '#aaa',
 		},
 		actionButton: {
 			width: 24,
