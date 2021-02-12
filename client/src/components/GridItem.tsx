@@ -1,11 +1,11 @@
-import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
+import React, { memo, useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { CodePenInfo } from '../services/codePenInfo';
+import { CodePenInfo, CodePenInfoHelper } from '../services/codePenInfo';
 
 interface GridItemProps {
 	index: number;
@@ -80,6 +80,12 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 
 	const [blurCode, setBlurCode] = useState<boolean>(true);
 	const itemRef = useRef<HTMLDivElement>(null);
+	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
+	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
+	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
+	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
+
+	console.log(cpUser + ' ' + cpId + ' ' + cpTitle + ' ' + cpColor);
 
 	useEffect(() => {
 		if (!itemRef.current) {
@@ -107,15 +113,14 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}, []);
 
 	const handleNavigateToCodePen = useCallback(() => {
-		const url = `https://codepen.io/${cpi.cpUser}/pen/${cpi.cpId}`;
-		window.open(url, '_blank');
+		window.open(cpi.url, '_blank');
 	}, []);
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
 			<Box className={classes.gridItemHeader}>
-				<Box className={classes.codePenTitle} style={{ color: cpi.color }} title={cpi.title}>
-					{cpi.title}
+				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
+					{cpTitle}
 				</Box>
 				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Show code" />}
 				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
@@ -128,9 +133,9 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 					data-height={height}
 					data-theme-id="dark"
 					data-default-tab="result"
-					data-pen-title={cpi.cpId}
-					data-user={cpi.cpUser}
-					data-slug-hash={cpi.cpId}
+					data-user={cpUser}
+					data-pen-title={cpId}
+					data-slug-hash={cpId}
 				/>
 			</Box>
 			<Box id="js-container" className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`} style={{ display: showCode ? 'block' : 'none' }}>
@@ -139,9 +144,9 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 					data-height={height}
 					data-theme-id="dark"
 					data-default-tab="js"
-					data-pen-title={cpi.cpId}
-					data-user={cpi.cpUser}
-					data-slug-hash={cpi.cpId}
+					data-user={cpUser}
+					data-pen-title={cpId}
+					data-slug-hash={cpId}
 				/>
 			</Box>
 			<Box className={classes.gridItemFooter} />

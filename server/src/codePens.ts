@@ -1,36 +1,31 @@
 export interface CodePenInfo {
-	title: string;
+	url: string;
+	title?: string;
 	color?: string;
-	cpUser: string;
-	cpId: string;
 }
 
 export class CodePens {
 	static getCodePens(): CodePenInfo[] {
 		return [
 			{
+				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
 				title: 'Green Hacker',
 				color: '#0f0',
-				cpUser: 'urikalish',
-				cpId: 'yLVeGzq',
 			},
 			{
+				url: 'https://codepen.io/urikalish/pen/RworEBK',
 				title: 'Yellow Hacker',
 				color: '#ff0',
-				cpUser: 'urikalish',
-				cpId: 'RworEBK',
 			},
 			{
+				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 				title: 'Red Hacker',
 				color: '#f00',
-				cpUser: 'urikalish',
-				cpId: 'ZEBGVVY',
 			},
 			{
+				url: 'https://codepen.io/urikalish/pen/QWErXRe',
 				title: 'Cyan Hacker',
 				color: '#0ff',
-				cpUser: 'urikalish',
-				cpId: 'QWErXRe',
 			},
 		];
 	}
