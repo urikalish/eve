@@ -9,23 +9,63 @@ export class CodePens {
 		return [
 			{
 				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
-				title: 'Green Hacker',
+				title: 'gr33n_hack3r',
 				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/RworEBK',
-				title: 'Yellow Hacker',
-				color: '#ff0',
+				title: 'y3ll0w_hack3r',
+				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
-				title: 'Red Hacker',
-				color: '#f00',
+				title: 'r3d_hack3r',
+				color: '#0f0',
 			},
 			{
-				url: 'https://codepen.io/urikalish/pen/QWErXRe',
-				title: 'Cyan Hacker',
-				color: '#0ff',
+				url: 'https://codepen.io/urikalish/pen/vYygjpz',
+				title: 'blu3_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
+				title: 'gr33n_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/RworEBK',
+				title: 'y3ll0w_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
+				title: 'r3d_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/vYygjpz',
+				title: 'blu3_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
+				title: 'gr33n_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/RworEBK',
+				title: 'y3ll0w_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
+				title: 'r3d_hack3r',
+				color: '#0f0',
+			},
+			{
+				url: 'https://codepen.io/urikalish/pen/vYygjpz',
+				title: 'blu3_hack3r',
+				color: '#0f0',
 			},
 		];
 	}

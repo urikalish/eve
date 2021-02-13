@@ -26,8 +26,8 @@ export const MainPage = memo(() => {
 		videoShade1: {
 			position: 'relative',
 			height: 100,
-			backgroundColor: '#000',
-			opacity: 0.5,
+			backgroundColor: '#120',
+			opacity: 0.75,
 		},
 		'@keyframes video-loop-color-animation': {
 			'0%': {
@@ -44,8 +44,8 @@ export const MainPage = memo(() => {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
 			opacity: 0.25,
-			backgroundColor: '#000',
-			animation: '$video-loop-color-animation 10s linear infinite',
+			backgroundColor: '#390',
+			//animation: '$video-loop-color-animation 1s linear infinite',
 		},
 		content: {
 			position: 'absolute',
@@ -79,7 +79,7 @@ export const MainPage = memo(() => {
 
 	return (
 		<Box id="MainPage" className={classes.root}>
-			{<VideoLoop videoName="binary-matrix" playbackSpeed={1.0} blurPixels={0} />}
+			{<VideoLoop videoName="binary-matrix" playbackSpeed={1} blurPixels={0} />}
 			<Box className={classes.videoShade1} />
 			<Box className={classes.videoShade2} />
 			<Box className={classes.content}>
