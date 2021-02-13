@@ -3,24 +3,26 @@ import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CodeIcon from '@material-ui/icons/Code';
+import WebAssetIcon from '@material-ui/icons/WebAsset';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { Typography } from '@material-ui/core';
 
 interface GridToolbarProps {
 	options: {
+		canShowCode: boolean;
 		canIncWidth: boolean;
 		canDecWidth: boolean;
 		canIncHeight: boolean;
 		canDecHeight: boolean;
 	};
 	onClickRefresh: () => void;
-	onClickCode: () => void;
+	onToggleCode: () => void;
 	onChangeColumnNumber: (inc: boolean) => void;
 	onChangeAspectRatio: (inc: boolean) => void;
 }
 
-export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChangeColumnNumber, onChangeAspectRatio }: GridToolbarProps) => {
+export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChangeColumnNumber, onChangeAspectRatio }: GridToolbarProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
@@ -66,8 +68,8 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 		onClickRefresh();
 	}, []);
 
-	const handleClickCode = useCallback(() => {
-		onClickCode();
+	const handleToggleCode = useCallback(() => {
+		onToggleCode();
 	}, []);
 
 	const handleClickIncColumnNumber = useCallback(() => {
@@ -89,29 +91,34 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 	return (
 		<Box id="GridToolbar" className={classes.root}>
 			<Box className={`${classes.panel}`}>
-				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} />
-				<CodeIcon onClick={handleClickCode} className={`${classes.actionButton}`} />
+				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh all" />
+				{!options.canShowCode && <WebAssetIcon onClick={handleToggleCode} className={classes.actionButton} titleAccess="Result mode" />}
+				{options.canShowCode && <CodeIcon onClick={handleToggleCode} className={`${classes.actionButton}`} titleAccess="Code mode" />}
 			</Box>
 			<Box className={`${classes.panel}`}>
 				<RemoveIcon
 					onClick={handleClickDecColumnNumber}
-					className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled} `}
+					className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}
+					titleAccess="Decrease size"
 				/>
 				<Typography className={classes.panelText}>Size</Typography>
 				<AddIcon
 					onClick={handleClickIncColumnNumber}
 					className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} `}
+					titleAccess="Increase size"
 				/>
 			</Box>
 			<Box className={`${classes.panel}`}>
 				<RemoveIcon
 					onClick={handleClickDecAspectRatio}
 					className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled} `}
+					titleAccess="Decrease height"
 				/>
 				<Typography className={classes.panelText}>Height</Typography>
 				<AddIcon
 					onClick={handleClickIncAspectRatio}
 					className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled}`}
+					titleAccess="Increase height"
 				/>
 			</Box>
 		</Box>

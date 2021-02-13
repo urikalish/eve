@@ -70,7 +70,7 @@ export const HomePage = memo(() => {
 		});
 	}, []);
 
-	const handleClickCode = useCallback(() => {
+	const handleToggleCode = useCallback(() => {
 		setShowCode((val) => !val);
 	}, []);
 
@@ -87,13 +87,14 @@ export const HomePage = memo(() => {
 			<Box className={classes.toolbarContainer}>
 				<GridToolbar
 					options={{
+						canShowCode: !showCode,
 						canIncWidth: columnNumber > columnNumberValues[0],
 						canDecWidth: columnNumber < columnNumberValues[columnNumberValues.length - 1],
 						canIncHeight: aspectRatio > aspectRatioValues[0],
 						canDecHeight: aspectRatio < aspectRatioValues[aspectRatioValues.length - 1],
 					}}
 					onClickRefresh={handleClickRefresh}
-					onClickCode={handleClickCode}
+					onToggleCode={handleToggleCode}
 					onChangeColumnNumber={handleChangeColumnNumber}
 					onChangeAspectRatio={handleChangeAspectRatio}
 				/>
