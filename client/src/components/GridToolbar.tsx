@@ -50,7 +50,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			margin: '0 4px',
 			cursor: 'pointer',
 			transition: 'all 0.2s ease-in-out',
-			color: '#bbb',
+			color: '#ccc',
 			'&:hover': {
 				color: '#fff',
 			},
