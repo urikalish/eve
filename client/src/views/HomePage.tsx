@@ -9,7 +9,7 @@ import { GridToolbar } from '../components/GridToolbar';
 import { GridItem } from '../components/GridItem';
 
 const columnNumberValues: number[] = [1, 2, 3, 4, 5];
-const aspectRatioValues: number[] = [1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3, 4];
+const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
 
 export const HomePage = memo(() => {
 	const useStyles = makeStyles(() => ({
