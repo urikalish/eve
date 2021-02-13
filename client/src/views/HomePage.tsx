@@ -8,7 +8,7 @@ import { Helper } from '../services/helper';
 import { GridToolbar } from '../components/GridToolbar';
 import { GridItem } from '../components/GridItem';
 
-const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6];
+const columnNumberValues: number[] = [1, 2, 3, 4, 5];
 const aspectRatioValues: number[] = [1 / 4, 1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3, 4];
 
 export const HomePage = memo(() => {
@@ -35,7 +35,7 @@ export const HomePage = memo(() => {
 	const classes = useStyles();
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-	const [columnNumber, setColumnNumber] = useState<number>(3);
+	const [columnNumber, setColumnNumber] = useState<number>(4);
 	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 
@@ -43,12 +43,12 @@ export const HomePage = memo(() => {
 
 	const itemHeight = useMemo(() => {
 		const width = (1248 - 16 * (columnNumber - 1)) / columnNumber;
-		return Math.ceil(width / aspectRatio + 78);
+		return Math.round(width / aspectRatio + 80);
 	}, [columnNumber, aspectRatio]);
 
 	useCurrentEffect((isCurrent) => {
 		(async () => {
-			const data = await getFromServer('/codepens');
+			const data = await getFromServer('/api/codepens');
 			if (!data || !isCurrent()) {
 				return;
 			}

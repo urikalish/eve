@@ -18,7 +18,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
-			border: '1px solid #ccc',
 			opacity: 0.95,
 			zIndex: 1,
 		},
@@ -37,10 +36,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		},
 		gridItemHeader: {
 			position: 'absolute',
-			left: 2,
-			right: 2,
-			top: 2,
-			height: 48,
+			left: 1,
+			right: 1,
+			top: 1,
+			height: 50,
 			display: 'flex',
 			alignItems: 'center',
 			backgroundColor: '#222',
@@ -62,13 +61,18 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			flex: '0 0 24px',
 			marginLeft: 4,
 			cursor: 'pointer',
+			transition: 'all 0.2s ease-in-out',
+			color: '#bbb',
+			'&:hover': {
+				color: '#fff',
+			},
 		},
 		gridItemFooter: {
 			position: 'absolute',
-			left: 2,
-			right: 2,
-			bottom: 2,
-			height: 28,
+			left: 1,
+			right: 1,
+			bottom: 3,
+			height: 30,
 			backgroundColor: '#222',
 			backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
@@ -127,7 +131,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 			</Box>
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
-				<Box
+				<p
 					className="codepen"
 					data-height={height}
 					data-theme-id="dark"

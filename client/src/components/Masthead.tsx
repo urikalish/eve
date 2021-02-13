@@ -47,6 +47,7 @@ export const Masthead = memo(() => {
 		},
 		link: {
 			textDecoration: 'none',
+			transition: 'all 0.2s ease-in-out',
 			color: '#aaa',
 			'&:hover': {
 				color: '#ccc',

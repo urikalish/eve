@@ -28,7 +28,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			position: 'relative',
 			height: '100%',
 			padding: '8px 0',
-			opacity: '0.75',
+			opacity: '0.8',
 		},
 		panel: {
 			display: 'flex',
@@ -41,7 +41,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 		},
 		panelText: {
 			lineHeight: '24px',
-			color: '#aaa',
+			color: '#666',
 		},
 		actionButton: {
 			width: 24,
@@ -49,10 +49,15 @@ export const GridToolbar = memo(({ options, onClickRefresh, onClickCode, onChang
 			textAlign: 'center',
 			margin: '0 4px',
 			cursor: 'pointer',
+			transition: 'all 0.2s ease-in-out',
+			color: '#bbb',
+			'&:hover': {
+				color: '#fff',
+			},
 		},
 		actionButtonDisabled: {
 			pointerEvents: 'none',
-			color: '#999',
+			color: '#666',
 		},
 	}));
 	const classes = useStyles();

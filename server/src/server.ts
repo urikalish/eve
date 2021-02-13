@@ -30,7 +30,7 @@ class Server {
 		const expressApp = express();
 		expressApp.use(express.static(this.PUBLIC_DIR));
 		expressApp.get('/', this.handleGetRequest);
-		expressApp.get('/codepens', this.handleGetCodePensRequest);
+		expressApp.get('/api/codepens', this.handleGetCodePensRequest);
 		return expressApp.listen(this.port, () => {
 			Logger.log(`Server.handleServerListen() listening. port:${this.port}`);
 		});
