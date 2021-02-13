@@ -92,8 +92,8 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 		<Box id="GridToolbar" className={classes.root}>
 			<Box className={`${classes.panel}`}>
 				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh all" />
-				{!options.canShowCode && <WebAssetIcon onClick={handleToggleCode} className={classes.actionButton} titleAccess="Result mode" />}
-				{options.canShowCode && <CodeIcon onClick={handleToggleCode} className={`${classes.actionButton}`} titleAccess="Code mode" />}
+				{!options.canShowCode && <WebAssetIcon onClick={handleToggleCode} className={classes.actionButton} titleAccess="Switch to result view" />}
+				{options.canShowCode && <CodeIcon onClick={handleToggleCode} className={`${classes.actionButton}`} titleAccess="Switch to code view" />}
 			</Box>
 			<Box className={`${classes.panel}`}>
 				<RemoveIcon
