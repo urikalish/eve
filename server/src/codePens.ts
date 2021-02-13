@@ -10,62 +10,50 @@ export class CodePens {
 			{
 				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
 				title: 'gr33n_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/RworEBK',
 				title: 'y3ll0w_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 				title: 'r3d_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/vYygjpz',
 				title: 'blu3_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
 				title: 'gr33n_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/RworEBK',
 				title: 'y3ll0w_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 				title: 'r3d_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/vYygjpz',
 				title: 'blu3_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
 				title: 'gr33n_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/RworEBK',
 				title: 'y3ll0w_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 				title: 'r3d_hack3r',
-				color: '#0f0',
 			},
 			{
 				url: 'https://codepen.io/urikalish/pen/vYygjpz',
 				title: 'blu3_hack3r',
-				color: '#0f0',
 			},
 		];
 	}

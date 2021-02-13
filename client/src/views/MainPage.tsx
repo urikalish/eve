@@ -26,25 +26,25 @@ export const MainPage = memo(() => {
 		videoShade1: {
 			position: 'relative',
 			height: 100,
-			backgroundColor: '#120',
-			opacity: 0.75,
+			backgroundColor: '#000',
+			opacity: 0.4,
 		},
-		'@keyframes video-loop-color-animation': {
-			'0%': {
-				backgroundColor: 'hsl(0, 25%, 50%)',
-			},
-			'50%': {
-				backgroundColor: 'hsl(180, 75%, 50%)',
-			},
-			'100%': {
-				backgroundColor: 'hsl(360, 25%, 50%)',
-			},
-		},
+		// '@keyframes video-loop-color-animation': {
+		// 	'0%': {
+		// 		backgroundColor: 'hsl(0, 25%, 50%)',
+		// 	},
+		// 	'50%': {
+		// 		backgroundColor: 'hsl(180, 75%, 50%)',
+		// 	},
+		// 	'100%': {
+		// 		backgroundColor: 'hsl(360, 25%, 50%)',
+		// 	},
+		// },
 		videoShade2: {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
-			opacity: 0.25,
-			backgroundColor: '#390',
+			opacity: 0.1,
+			backgroundColor: '#fff',
 			//animation: '$video-loop-color-animation 1s linear infinite',
 		},
 		content: {
@@ -79,7 +79,7 @@ export const MainPage = memo(() => {
 
 	return (
 		<Box id="MainPage" className={classes.root}>
-			{<VideoLoop videoName="binary-matrix" playbackSpeed={1} blurPixels={0} />}
+			{<VideoLoop videoName="binary-matrix" playbackSpeed={1} blurPixels={0} grayscale={true} />}
 			<Box className={classes.videoShade1} />
 			<Box className={classes.videoShade2} />
 			<Box className={classes.content}>

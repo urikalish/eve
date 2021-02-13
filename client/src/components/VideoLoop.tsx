@@ -6,9 +6,10 @@ interface VideoLoopProps {
 	videoName: string;
 	playbackSpeed?: number;
 	blurPixels?: number;
+	grayscale?: boolean;
 }
 
-export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0 }: VideoLoopProps) => {
+export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0, grayscale = false }: VideoLoopProps) => {
 	const useStyles = makeStyles((/*theme*/) => ({
 		root: {
 			position: 'absolute',
@@ -25,6 +26,9 @@ export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0 }:
 			minWidth: '100vw',
 			height: '100vh',
 			minHeight: '56.25vw' /* 100 * 9 / 16 */,
+		},
+		grayscale: {
+			filter: 'grayscale(1)',
 		},
 	}));
 	const classes = useStyles();
@@ -43,8 +47,15 @@ export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0 }:
 	}, []);
 
 	return (
-		<Box id="VideoLoop" className={classes.root}>
-			<video ref={videoRef} autoPlay={true} loop={true} muted={true} playsInline={true} className={classes.video}>
+		<Box id="VideoLoop" className={`${classes.root} ${grayscale ? classes.grayscale : ''}`}>
+			<video
+				ref={videoRef}
+				autoPlay={true}
+				loop={true}
+				muted={true}
+				playsInline={true}
+				className={`${classes.video} ${grayscale ? classes.grayscale : ''}`}
+			>
 				<source type="video/mp4" src={`./videos/${videoName}.mp4`} />
 			</video>
 		</Box>
