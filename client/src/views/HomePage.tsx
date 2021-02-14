@@ -18,7 +18,7 @@ export const HomePage = memo(() => {
 			height: '100%',
 			display: 'grid',
 			gridTemplateColumns: '1fr',
-			gridTemplateRows: '40px auto',
+			gridTemplateRows: '24px auto',
 			rowGap: 16,
 			userSelect: 'none',
 		},
