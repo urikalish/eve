@@ -55,7 +55,7 @@ export const Masthead = memo(() => {
 		},
 		currentPath: {
 			textDecoration: 'none',
-			color: '#ddd',
+			color: '#fff',
 			pointerEvents: 'none',
 		},
 		centerPart: {
