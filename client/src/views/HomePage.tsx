@@ -29,7 +29,6 @@ export const HomePage = memo(() => {
 		grid: {
 			display: 'grid',
 			gridGap: 16,
-			//animation: 'fade-in-animation 1s ease-in-out 5s forwards',
 		},
 	}));
 	const classes = useStyles();
