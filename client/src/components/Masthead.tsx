@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -96,7 +96,7 @@ export const Masthead = memo(() => {
 
 	const leftLinks: Array<{ text: string; to: string }> = [
 		{ text: 'Home', to: '/' },
-		{ text: 'Setup', to: '/setup' },
+		{ text: 'Grid', to: '/grid' },
 		{ text: 'About', to: '/about' },
 	];
 
@@ -104,10 +104,22 @@ export const Masthead = memo(() => {
 
 	const myLocation = useLocation();
 
+	const isCurrentPathLink = (linkTo: string) => {
+		if (linkTo === '/') {
+			return myLocation.pathname === '/' || myLocation.pathname === '/home';
+		} else {
+			return myLocation.pathname.startsWith(linkTo);
+		}
+	};
+
 	const history = useHistory();
 
 	const handleClickHomeIcon = () => {
 		history.push('/');
+	};
+
+	const handleClickLogin = () => {
+		history.push('/login');
 	};
 
 	return (
@@ -118,7 +130,7 @@ export const Masthead = memo(() => {
 						<List className={classes.list}>
 							{leftLinks.map((link, index) => (
 								<ListItem key={index} className={classes.listItem}>
-									<Link to={link.to} className={link.to === myLocation.pathname ? classes.currentPath : classes.link}>
+									<Link to={link.to} className={isCurrentPathLink(link.to) ? classes.currentPath : classes.link}>
 										<ListItemText primary={link.text} />
 									</Link>
 								</ListItem>
@@ -143,7 +155,7 @@ export const Masthead = memo(() => {
 							))}
 						</List>
 					</Box>
-					<Button variant="contained" size="small" color="secondary" className={classes.actionButton}>
+					<Button onClick={handleClickLogin} variant="contained" size="small" color="secondary" className={classes.actionButton}>
 						Log In
 					</Button>
 				</Box>

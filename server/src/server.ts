@@ -2,7 +2,7 @@ import * as http from 'http';
 import express = require('express');
 import { Request, Response } from 'express';
 import { Logger } from './logger';
-import { CodePens } from './codePens';
+import { Grids } from './grids';
 
 class Server {
 	private DEFAULT_PORT = 4000;
@@ -20,17 +20,19 @@ class Server {
 		res.send({ msg: 'Hi from the server' });
 	}
 
-	handleGetCodePensRequest(req: Request, res: Response) {
-		Logger.log(`Server.handleGetCodePensRequest()`);
-		const codePens = CodePens.getCodePens();
-		res.send({ codePens });
+	handleGetGridInfoRequest(req: Request, res: Response) {
+		Logger.log(`Server.handleGetGridRequest()`);
+		const gridId = req.params.id;
+		Logger.log(`gridId: ${gridId}`);
+		const gridInfo = Grids.getGridInfo(gridId);
+		res.send({ gridInfo });
 	}
 
 	startExpress() {
 		const expressApp = express();
 		expressApp.use(express.static(this.PUBLIC_DIR));
 		expressApp.get('/', this.handleGetRequest);
-		expressApp.get('/api/codepens', this.handleGetCodePensRequest);
+		expressApp.get('/api/grids/:id', this.handleGetGridInfoRequest);
 		return expressApp.listen(this.port, () => {
 			Logger.log(`Server.handleServerListen() listening. port:${this.port}`);
 		});
