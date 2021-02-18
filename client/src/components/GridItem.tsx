@@ -86,8 +86,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
 	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
 
-	console.log(cpUser + ' ' + cpId + ' ' + cpTitle + ' ' + cpColor);
-
 	useEffect(() => {
 		if (!itemRef.current) {
 			return;

@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Typography } from '@material-ui/core';
 import hackerImage from '../images/hacker.png';
+import Button from "@material-ui/core/Button";
 
 export const Masthead = memo(() => {
 	const useStyles = makeStyles(() => ({
@@ -82,18 +83,24 @@ export const Masthead = memo(() => {
 			width: 75,
 			left: -35,
 		},
-		rightPart: {},
+		rightPart: {
+			display: 'flex',
+			alignItems: 'center',
+		},
+		actionButton: {
+			marginLeft: 16,
+			textTransform: 'none',
+		}
 	}));
 	const classes = useStyles();
 
-	const leftLinks = [
+	const leftLinks : Array<{text: string, to: string}> = [
 		{ text: 'Home', to: '/' },
+		{ text: 'Setup', to: '/setup' },
 		{ text: 'About', to: '/about' },
 	];
 
-	const rightLinks = [
-		{ text: 'Setup', to: '/setup' },
-		{ text: 'Login', to: '/login' },
+	const rightLinks : Array<{text: string, to: string}> = [
 	];
 
 	const myLocation = useLocation();
@@ -137,6 +144,9 @@ export const Masthead = memo(() => {
 							))}
 						</List>
 					</Box>
+					<Button variant="contained" size="small" color="secondary" className={classes.actionButton}>
+						Log In
+					</Button>
 				</Box>
 			</Box>
 		</Box>
