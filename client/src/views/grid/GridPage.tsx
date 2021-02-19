@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
-import { ServerContainer } from '../services/useServer';
-import { GridInfo } from '../services/gridInfo';
-import { CodePenInfo } from '../services/codePenInfo';
-import { Helper } from '../services/helper';
-import { GridToolbar } from '../components/GridToolbar';
-import { GridItem } from '../components/GridItem';
+import { ServerContainer } from '../../services/useServer';
+import { GridInfo } from './gridInfo';
+import { CodePenInfo } from './codePenInfo';
+import { GridToolbar } from './GridToolbar';
+import { GridItem } from './GridItem';
 
 const columnNumberValues: number[] = [1, 2, 3, 4, 5];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
@@ -66,7 +65,11 @@ export const GridPage = memo(() => {
 				if (!isCurrent()) {
 					return;
 				}
-				Helper.loadCodePenScript();
+				const script = document.createElement('script');
+				script.setAttribute('id', 'codePenEmbedScript');
+				script.setAttribute('async', '""');
+				script.setAttribute('src', 'https://cpwebassets.codepen.io/assets/embed/ei.js');
+				document.body.appendChild(script);
 			}, 0);
 		})();
 	}, []);

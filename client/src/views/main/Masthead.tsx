@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Typography } from '@material-ui/core';
-import hackerImage from '../images/hacker.png';
+import hackerImage from '../../images/hacker.png';
 import Button from '@material-ui/core/Button';
 
 export const Masthead = memo(() => {

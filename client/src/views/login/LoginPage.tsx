@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
-import { UnderConstruction } from '../components/UnderConstruction';
+import { UnderConstruction } from '../../components/UnderConstruction';
 
 export const LoginPage = memo(() => {
 	const useStyles = makeStyles(() => ({

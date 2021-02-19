@@ -2,13 +2,13 @@ import React, { memo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { HomePage } from './HomePage';
-import { GridSelectionPage } from './GridSelectionPage';
-import { GridPage } from './GridPage';
-import { AboutPage } from './AboutPage';
-import { LoginPage } from './LoginPage';
-import { Masthead } from '../components/Masthead';
-import { VideoLoop } from '../components/VideoLoop';
+import { HomePage } from '../home/HomePage';
+import { GridSelectionPage } from '../grid/GridSelectionPage';
+import { GridPage } from '../grid/GridPage';
+import { AboutPage } from '../about/AboutPage';
+import { LoginPage } from '../login/LoginPage';
+import { Masthead } from './Masthead';
+import { VideoLoop } from './VideoLoop';
 
 export const MainPage = memo(() => {
 	const useStyles = makeStyles((theme) => ({

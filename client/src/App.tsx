@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { createMyTheme } from './services/themeHelper';
-import { MainPage } from './views/MainPage';
+import { MainPage } from './views/main/MainPage';
 import { ServerContainer } from './services/useServer';
 import './App.css';
 
