@@ -23,8 +23,12 @@ class Server {
 	handleGetGridInfoRequest(req: Request, res: Response) {
 		Logger.log(`Server.handleGetGridRequest()`);
 		const gridId = req.params.id;
-		Logger.log(`gridId: ${gridId}`);
 		const gridInfo = Grids.getGridInfo(gridId);
+		if (gridInfo) {
+			Logger.log(`Found grid ${gridId}`);
+		} else {
+			Logger.error(`Unable to find grid ${gridId}`);
+		}
 		res.send({ gridInfo });
 	}
 

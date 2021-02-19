@@ -57,6 +57,9 @@ export const GridPage = memo(() => {
 				return;
 			}
 			const gridInfo: GridInfo = JSON.parse(data).gridInfo;
+			if (!gridInfo) {
+				return;
+			}
 			const codePenInfo: CodePenInfo[] = gridInfo.codePens;
 			setCodePensInfo(codePenInfo);
 			setTimeout(() => {
