@@ -43,7 +43,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			alignItems: 'center',
 			backgroundColor: '#222',
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
-			backgroundSize: '24px 24px',
+			//backgroundSize: '24px 24px',
 			padding: '0 8px 0 16px',
 		},
 		codePenTitle: {
@@ -73,7 +73,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			height: 29,
 			backgroundColor: '#222',
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
-			backgroundSize: '24px 24px',
+			//backgroundSize: '24px 24px',
 		},
 	}));
 	const classes = useStyles();

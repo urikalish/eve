@@ -29,12 +29,15 @@ export const MainPage = memo(() => {
 		cover1: {
 			position: 'relative',
 			height: 100,
-			backgroundColor: '#000',
-			opacity: 0.4,
+			backgroundColor: '#a60',
+			backgroundImage: 'linear-gradient(135deg, #c90 25%, #a60 25%, #a60 50%, #c90 50%, #c90 75%, #a60 75%, #a60 100%)',
+			backgroundSize: '8px 8px',
+			opacity: 0.25,
 		},
 		cover2: {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
+			borderTop: '1px solid #111',
 		},
 		content: {
 			position: 'absolute',
@@ -47,10 +50,10 @@ export const MainPage = memo(() => {
 		mastheadContainer: {
 			position: 'relative',
 			height: 100,
-			maxWidth: 1280,
+			//maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			padding: '0 16px',
+			padding: '0 32px',
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',
@@ -68,8 +71,8 @@ export const MainPage = memo(() => {
 	return (
 		<Box id="MainPage" className={classes.root}>
 			{/*{<VideoLoop videoName="purple-bokeh" playbackSpeed={1} blurPixels={0} grayscale={true} />}*/}
-			{/*{<VideoLoop videoName="purple-bokeh" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}*/}
-			{<VideoLoop videoName="binary-matrix" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}
+			{<VideoLoop videoName="purple-bokeh" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}
+			{/*{<VideoLoop videoName="binary-matrix" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}*/}
 			<Box className={classes.cover1} />
 			<Box className={classes.cover2} />
 			<Box className={classes.content}>

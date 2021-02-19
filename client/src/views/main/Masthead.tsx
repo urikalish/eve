@@ -37,10 +37,8 @@ export const Masthead = memo(() => {
 			flex: '0 0 auto',
 			width: 'auto',
 			height: '1.5rem',
-			borderLeft: `1px solid #666`,
 			'&:nth-of-type(1)': {
 				paddingLeft: 0,
-				borderLeft: 'none',
 			},
 			'&:last-of-type': {
 				paddingRight: 0,
@@ -155,7 +153,7 @@ export const Masthead = memo(() => {
 							))}
 						</List>
 					</Box>
-					<Button onClick={handleClickLogin} variant="contained" size="small" color="secondary" className={classes.actionButton}>
+					<Button onClick={handleClickLogin} variant="contained" size="small" className={classes.actionButton}>
 						Log In
 					</Button>
 				</Box>
