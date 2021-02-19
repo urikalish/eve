@@ -47,7 +47,7 @@ export const GridPage = memo(() => {
 
 	const itemHeight = useMemo(() => {
 		const windowWidth = size.width || window.innerWidth;
-		const paddingSize = 32 + 32;
+		const paddingSize = 32 * 2;
 		const gridGap = 16;
 		const width = (windowWidth - paddingSize - gridGap * (columnNumber - 1)) / columnNumber;
 		return Math.round(width / aspectRatio + 80);
