@@ -15,11 +15,10 @@ interface GridItemProps {
 }
 
 export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) => {
-	const useStyles = makeStyles((theme) => ({
+	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
-			//opacity: 0.95,
-			zIndex: 1,
+			opacity: 0.75,
 		},
 		jsContainer: {
 			position: 'absolute',
@@ -42,13 +41,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			height: 49,
 			display: 'flex',
 			alignItems: 'center',
-			//backgroundColor: theme.palette.background.default,
-			//backgroundImage: 'linear-gradient(135deg, #263238 25%, #37474f 25%, #37474f 50%, #263238 50%, #263238 75%, #37474f 75%, #37474f 100%)',
 			backgroundColor: '#222',
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
 			padding: '0 8px 0 16px',
-			zIndex: 3,
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
@@ -57,14 +53,14 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			whiteSpace: 'nowrap',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
-			color: '#bbb',
+			color: '#ccc',
 		},
 		actionButton: {
 			flex: '0 0 24px',
 			marginLeft: 4,
 			cursor: 'pointer',
 			transition: 'all 0.2s ease-in-out',
-			color: '#bbb',
+			color: '#ccc',
 			'&:hover': {
 				color: '#fff',
 			},
@@ -75,12 +71,9 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			right: 2,
 			bottom: 4,
 			height: 29,
-			//backgroundColor: theme.palette.background.default,
-			//backgroundImage: 'linear-gradient(135deg, #263238 25%, #37474f 25%, #37474f 50%, #263238 50%, #263238 75%, #37474f 75%, #37474f 100%)',
 			backgroundColor: '#222',
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			backgroundSize: '24px 24px',
-			zIndex: 3,
 		},
 	}));
 	const classes = useStyles();
@@ -123,14 +116,16 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<Box className={classes.gridItemHeader}>
-				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
-					{cpTitle}
-				</Box>
-				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
-				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
-				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
-				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
+			<Box id="js-container" className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`} style={{ display: showCode ? 'block' : 'none' }}>
+				<Box
+					className="codepen"
+					data-height={height}
+					data-theme-id="dark"
+					data-default-tab="js"
+					data-user={cpUser}
+					data-pen-title={cpId}
+					data-slug-hash={cpId}
+				/>
 			</Box>
 			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
 				<p
@@ -143,16 +138,14 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 					data-slug-hash={cpId}
 				/>
 			</Box>
-			<Box id="js-container" className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`} style={{ display: showCode ? 'block' : 'none' }}>
-				<Box
-					className="codepen"
-					data-height={height}
-					data-theme-id="dark"
-					data-default-tab="js"
-					data-user={cpUser}
-					data-pen-title={cpId}
-					data-slug-hash={cpId}
-				/>
+			<Box className={classes.gridItemHeader}>
+				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
+					{cpTitle}
+				</Box>
+				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
+				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
+				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
+				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 			</Box>
 			<Box className={classes.gridItemFooter} />
 		</div>

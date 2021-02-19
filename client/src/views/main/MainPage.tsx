@@ -2,13 +2,13 @@ import React, { memo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { HomePage } from '../home/HomePage';
-import { GridListPage } from '../grid/GridListPage';
-import { GridPage } from '../grid/GridPage';
-import { AboutPage } from '../about/AboutPage';
-import { LoginPage } from '../login/LoginPage';
 import { Masthead } from './Masthead';
 import { VideoLoop } from './VideoLoop';
+import { HomePage } from '../home/HomePage';
+import { GridPage } from '../grid/GridPage';
+import { GridListPage } from '../grid/GridListPage';
+import { AboutPage } from '../about/AboutPage';
+import { LoginPage } from '../login/LoginPage';
 
 export const MainPage = memo(() => {
 	const useStyles = makeStyles((theme) => ({
@@ -19,9 +19,9 @@ export const MainPage = memo(() => {
 			top: 0,
 			bottom: 0,
 			overflow: 'hidden',
-			//backgroundColor: theme.palette.background.paper,
 			backgroundColor: '#444',
 			backgroundImage: 'url("/gray.jpg")',
+			backgroundSize: 'cover',
 			color: theme.palette.text.primary,
 			fontFamily: theme.typography.fontFamily,
 			animation: 'fade-in-animation 3s ease-in-out',
@@ -35,7 +35,6 @@ export const MainPage = memo(() => {
 		cover2: {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
-			//backgroundColor: '#588',
 		},
 		content: {
 			position: 'absolute',
@@ -52,7 +51,6 @@ export const MainPage = memo(() => {
 			marginLeft: 'auto',
 			marginRight: 'auto',
 			padding: '0 16px',
-			zIndex: 1,
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',
