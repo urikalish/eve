@@ -1,12 +1,14 @@
 import React, { memo, useCallback } from 'react';
-import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@material-ui/core/Box/Box';
+import { Typography } from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CodeIcon from '@material-ui/icons/Code';
 import WebAssetIcon from '@material-ui/icons/WebAsset';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import { Typography } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import { useHistory } from 'react-router-dom';
 
 interface GridToolbarProps {
 	options: {
@@ -26,17 +28,31 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 	const useStyles = makeStyles(() => ({
 		root: {
 			display: 'flex',
+			justifyContent: 'space-between',
 			alignItems: 'center',
 			position: 'relative',
 			height: '100%',
-			opacity: '0.8',
+			//opacity: '0.8',
+		},
+		groupLeft: {
+			display: 'flex',
+			alignItems: 'center',
+			height: '100%',
+		},
+		groupRight: {
+			display: 'flex',
+			alignItems: 'center',
+			height: '100%',
+			'& > div': {
+				marginRight: 0,
+			},
 		},
 		panel: {
 			display: 'flex',
 			alignItems: 'center',
 			height: 24,
 			borderRadius: 12,
-			backgroundColor: '#111',
+			backgroundColor: '#222',
 			padding: '0 4px',
 			marginRight: 24,
 		},
@@ -87,38 +103,51 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 		onChangeAspectRatio(false);
 	}, []);
 
+	const history = useHistory();
+
+	const handleClickExit = useCallback(() => {
+		history.push('/grid');
+	}, []);
+
 	return (
 		<Box id="GridToolbar" className={classes.root}>
-			<Box className={`${classes.panel}`}>
-				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh all" />
-				{!options.canShowCode && <WebAssetIcon onClick={handleToggleCode} className={classes.actionButton} titleAccess="Switch to result view" />}
-				{options.canShowCode && <CodeIcon onClick={handleToggleCode} className={`${classes.actionButton}`} titleAccess="Switch to code view" />}
+			<Box className={classes.groupLeft}>
+				<Box className={`${classes.panel}`}>
+					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh all" />
+					{!options.canShowCode && <WebAssetIcon onClick={handleToggleCode} className={classes.actionButton} titleAccess="Switch to result view" />}
+					{options.canShowCode && <CodeIcon onClick={handleToggleCode} className={`${classes.actionButton}`} titleAccess="Switch to code view" />}
+				</Box>
+				<Box className={`${classes.panel}`}>
+					<RemoveIcon
+						onClick={handleClickDecColumnNumber}
+						className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}
+						titleAccess="Decrease size"
+					/>
+					<Typography className={classes.panelText}>Size</Typography>
+					<AddIcon
+						onClick={handleClickIncColumnNumber}
+						className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} `}
+						titleAccess="Increase size"
+					/>
+				</Box>
+				<Box className={`${classes.panel}`}>
+					<RemoveIcon
+						onClick={handleClickDecAspectRatio}
+						className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled} `}
+						titleAccess="Decrease height"
+					/>
+					<Typography className={classes.panelText}>Height</Typography>
+					<AddIcon
+						onClick={handleClickIncAspectRatio}
+						className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled}`}
+						titleAccess="Increase height"
+					/>
+				</Box>
 			</Box>
-			<Box className={`${classes.panel}`}>
-				<RemoveIcon
-					onClick={handleClickDecColumnNumber}
-					className={`${classes.actionButton} ${options.canDecWidth ? '' : classes.actionButtonDisabled}`}
-					titleAccess="Decrease size"
-				/>
-				<Typography className={classes.panelText}>Size</Typography>
-				<AddIcon
-					onClick={handleClickIncColumnNumber}
-					className={`${classes.actionButton} ${options.canIncWidth ? '' : classes.actionButtonDisabled} `}
-					titleAccess="Increase size"
-				/>
-			</Box>
-			<Box className={`${classes.panel}`}>
-				<RemoveIcon
-					onClick={handleClickDecAspectRatio}
-					className={`${classes.actionButton} ${options.canDecHeight ? '' : classes.actionButtonDisabled} `}
-					titleAccess="Decrease height"
-				/>
-				<Typography className={classes.panelText}>Height</Typography>
-				<AddIcon
-					onClick={handleClickIncAspectRatio}
-					className={`${classes.actionButton} ${options.canIncHeight ? '' : classes.actionButtonDisabled}`}
-					titleAccess="Increase height"
-				/>
+			<Box className={classes.groupRight}>
+				<Box className={`${classes.panel}`}>
+					<CloseIcon onClick={handleClickExit} className={classes.actionButton} titleAccess="Exit grid" />
+				</Box>
 			</Box>
 		</Box>
 	);

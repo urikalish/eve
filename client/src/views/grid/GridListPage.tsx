@@ -21,7 +21,7 @@ export const GridListPage = memo(() => {
 			gridTemplateRows: 30,
 			gridRowGap: 16,
 			gridColumnGap: 40,
-			opacity: 0.9,
+			//opacity: 0.9,
 			color: '#fff',
 			borderRadius: 16,
 			userSelect: 'none',

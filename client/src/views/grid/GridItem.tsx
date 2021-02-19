@@ -18,7 +18,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
-			opacity: 0.95,
+			//opacity: 0.95,
 			zIndex: 1,
 		},
 		jsContainer: {
