@@ -15,7 +15,7 @@ export const HomePage = memo(() => {
 
 	return (
 		<Box id="HomePage" className={classes.root}>
-			<UnderConstruction />;
+			<UnderConstruction />
 		</Box>
 	);
 });

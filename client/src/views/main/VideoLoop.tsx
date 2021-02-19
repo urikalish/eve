@@ -7,16 +7,16 @@ interface VideoLoopProps {
 	playbackSpeed?: number;
 	blurPixels?: number;
 	grayscale?: boolean;
+	top?: string;
+	height?: string;
 }
 
-export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0, grayscale = false }: VideoLoopProps) => {
+export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0, grayscale = false, top = '0', height = '100vh' }: VideoLoopProps) => {
 	const useStyles = makeStyles((/*theme*/) => ({
 		root: {
 			position: 'absolute',
 			left: 0,
-			top: 0,
 			minWidth: '100vw',
-			minHeight: '100vh',
 			overflow: 'hidden',
 			pointerEvents: 'none',
 		},
@@ -47,7 +47,7 @@ export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0, g
 	}, []);
 
 	return (
-		<Box id="VideoLoop" className={`${classes.root} ${grayscale ? classes.grayscale : ''}`}>
+		<Box id="VideoLoop" className={`${classes.root} ${grayscale ? classes.grayscale : ''}`} style={{ top: top, minHeight: height }}>
 			<video
 				ref={videoRef}
 				autoPlay={true}

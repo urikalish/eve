@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 export const AboutPage = memo(() => {
@@ -11,7 +11,7 @@ export const AboutPage = memo(() => {
 			display: 'grid',
 			justifyContent: 'center',
 			alignContent: 'center',
-			textAlign: 'center',
+			borderRadius: 8,
 			color: '#fff',
 			userSelect: 'none',
 		},

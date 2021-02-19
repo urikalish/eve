@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { HomePage } from '../home/HomePage';
-import { GridSelectionPage } from '../grid/GridSelectionPage';
+import { GridListPage } from '../grid/GridListPage';
 import { GridPage } from '../grid/GridPage';
 import { AboutPage } from '../about/AboutPage';
 import { LoginPage } from '../login/LoginPage';
@@ -19,34 +19,21 @@ export const MainPage = memo(() => {
 			top: 0,
 			bottom: 0,
 			overflow: 'hidden',
-			backgroundColor: theme.palette.background.default,
+			backgroundColor: theme.palette.background.paper,
 			color: theme.palette.text.primary,
 			fontFamily: theme.typography.fontFamily,
 			animation: 'fade-in-animation 3s ease-in-out',
 		},
-		videoShade1: {
+		cover1: {
 			position: 'relative',
 			height: 100,
 			backgroundColor: '#000',
 			opacity: 0.4,
 		},
-		// '@keyframes video-loop-color-animation': {
-		// 	'0%': {
-		// 		backgroundColor: 'hsl(0, 25%, 50%)',
-		// 	},
-		// 	'50%': {
-		// 		backgroundColor: 'hsl(180, 75%, 50%)',
-		// 	},
-		// 	'100%': {
-		// 		backgroundColor: 'hsl(360, 25%, 50%)',
-		// 	},
-		// },
-		videoShade2: {
+		cover2: {
 			position: 'relative',
 			height: 'calc(100% - 100px)',
-			opacity: 0.4,
-			backgroundColor: '#588',
-			//animation: '$video-loop-color-animation 10s linear infinite',
+			//backgroundColor: '#588',
 		},
 		content: {
 			position: 'absolute',
@@ -72,7 +59,7 @@ export const MainPage = memo(() => {
 			maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			padding: '16px',
+			padding: '40px 16px',
 			color: theme.palette.text.primary,
 		},
 	}));
@@ -80,10 +67,11 @@ export const MainPage = memo(() => {
 
 	return (
 		<Box id="MainPage" className={classes.root}>
-			{<VideoLoop videoName="binary-matrix" playbackSpeed={1} blurPixels={0} grayscale={false} />}
-			{/*{<VideoLoop videoName="purple-bokeh" playbackSpeed={1} blurPixels={0} grayscale={false} />}*/}
-			<Box className={classes.videoShade1} />
-			<Box className={classes.videoShade2} />
+			{/*{<VideoLoop videoName="purple-bokeh" playbackSpeed={1} blurPixels={0} grayscale={true} />}*/}
+			{/*{<VideoLoop videoName="purple-bokeh" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}*/}
+			{<VideoLoop videoName="binary-matrix" height="100px" playbackSpeed={1} blurPixels={0} grayscale={false} />}
+			<Box className={classes.cover1} />
+			<Box className={classes.cover2} />
 			<Box className={classes.content}>
 				<Box className={classes.mastheadContainer}>
 					<Masthead />
@@ -91,7 +79,7 @@ export const MainPage = memo(() => {
 				<Box className={classes.pageContainer}>
 					<Switch>
 						<Route path="/home" exact component={HomePage} />
-						<Route path="/grid" exact component={GridSelectionPage} />
+						<Route path="/grid" exact component={GridListPage} />
 						<Route path="/grid/:id" exact component={GridPage} />
 						<Route path="/about" exact component={AboutPage} />
 						<Route path="/login" exact component={LoginPage} />
