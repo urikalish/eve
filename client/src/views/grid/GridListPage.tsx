@@ -2,12 +2,11 @@ import React, { memo } from 'react';
 import Box from '@material-ui/core/Box/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useHistory } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import Typography from '@material-ui/core/Typography';
-import { Paper } from '@material-ui/core';
 
 export const GridListPage = memo(() => {
 	const useStyles = makeStyles(() => ({
@@ -45,7 +44,7 @@ export const GridListPage = memo(() => {
 	};
 
 	return (
-		<Paper elevation={1} id="GridListPage" className={classes.root}>
+		<Box id="GridListPage" className={classes.root}>
 			<Typography className={classes.text}>New grid</Typography>
 			<Box className={classes.actionButtons}>
 				<Button variant="contained" size="small" startIcon={<AddCircleOutlineOutlinedIcon />} className={classes.actionButton}>
@@ -61,6 +60,6 @@ export const GridListPage = memo(() => {
 					Delete
 				</Button>
 			</Box>
-		</Paper>
+		</Box>
 	);
 });

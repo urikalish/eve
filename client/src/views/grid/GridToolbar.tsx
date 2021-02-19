@@ -53,6 +53,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 			height: 24,
 			borderRadius: 12,
 			backgroundColor: '#222',
+			border: '1px solid #444',
 			padding: '0 4px',
 			marginRight: 24,
 		},
