@@ -17,6 +17,6 @@ export class CodePenInfoHelper {
 		return cpi.title || CodePenInfoHelper.getCodePenUser(cpi);
 	}
 	static getCodePenColor(cpi: CodePenInfo): string {
-		return cpi.color || '#ccc';
+		return cpi.color || '';
 	}
 }
