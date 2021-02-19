@@ -24,7 +24,8 @@ export const MainPage = memo(() => {
 			backgroundSize: 'cover',
 			color: theme.palette.text.primary,
 			fontFamily: theme.typography.fontFamily,
-			animation: 'fade-in-animation 3s ease-in-out',
+			opacity: 0,
+			animation: 'fade-in-animation 3s 3s ease-in-out forwards',
 		},
 		cover1: {
 			position: 'relative',
@@ -57,12 +58,10 @@ export const MainPage = memo(() => {
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',
-			left: 0,
-			top: 80,
 			maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
-			padding: '40px 16px',
+			padding: 32,
 			color: theme.palette.text.primary,
 		},
 	}));

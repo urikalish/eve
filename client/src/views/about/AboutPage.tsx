@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 export const AboutPage = memo(() => {
-	const useStyles = makeStyles(() => ({
+	const useStyles = makeStyles((theme) => ({
 		root: {
 			position: 'relative',
 			height: '100%',
@@ -12,7 +12,7 @@ export const AboutPage = memo(() => {
 			justifyContent: 'center',
 			alignContent: 'center',
 			borderRadius: 8,
-			color: '#fff',
+			color: theme.palette.text.primary,
 			userSelect: 'none',
 		},
 	}));

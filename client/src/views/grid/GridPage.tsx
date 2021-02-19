@@ -19,7 +19,7 @@ export const GridPage = memo(() => {
 			height: '100%',
 			display: 'grid',
 			gridTemplateColumns: '1fr',
-			gridTemplateRows: '24px auto',
+			gridTemplateRows: '32px auto',
 			rowGap: 16,
 			userSelect: 'none',
 		},
@@ -45,7 +45,7 @@ export const GridPage = memo(() => {
 	const { getFromServer } = ServerContainer.useContainer();
 
 	const itemHeight = useMemo(() => {
-		const width = (1248 - 16 * (columnNumber - 1)) / columnNumber;
+		const width = (1216 - 16 * (columnNumber - 1)) / columnNumber;
 		return Math.round(width / aspectRatio + 80);
 	}, [columnNumber, aspectRatio]);
 

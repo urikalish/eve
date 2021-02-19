@@ -21,7 +21,6 @@ export const Masthead = memo(() => {
 			display: 'flex',
 			justifyContent: 'space-between',
 			alignItems: 'center',
-			color: '#fff',
 		},
 		leftPart: {
 			display: 'flex',

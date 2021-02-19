@@ -4,12 +4,11 @@ import Box from '@material-ui/core/Box/Box';
 import { Typography } from '@material-ui/core';
 
 export const UnderConstruction = memo(() => {
-	const useStyles = makeStyles(() => ({
+	const useStyles = makeStyles((theme) => ({
 		root: {
 			height: '100%',
-			backgroundImage: 'linear-gradient(135deg, #333 25%, #aa0 25%, #aa0 50%, #333 50%, #333 75%, #aa0 75%, #aa0 100%)',
-			backgroundSize: '40px 40px',
-			borderRadius: 8,
+			backgroundImage: 'linear-gradient(135deg, #aa0 25%, #333 25%, #333 50%, #aa0 50%, #aa0 75%, #333 75%, #333 100%)',
+			backgroundSize: '56px 56px',
 			userSelect: 'none',
 		},
 		grid: {
@@ -17,7 +16,7 @@ export const UnderConstruction = memo(() => {
 			display: 'grid',
 			justifyContent: 'center',
 			alignContent: 'center',
-			color: '#fff',
+			color: theme.palette.text.primary,
 		},
 	}));
 	const classes = useStyles();
