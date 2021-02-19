@@ -58,7 +58,7 @@ export const MainPage = memo(() => {
 		},
 		pageContainer: {
 			height: 'calc(100% - 100px)',
-			maxWidth: 1280,
+			//maxWidth: 1280,
 			marginLeft: 'auto',
 			marginRight: 'auto',
 			padding: 32,

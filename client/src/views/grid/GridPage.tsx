@@ -4,12 +4,13 @@ import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import { ServerContainer } from '../../services/useServer';
+import { useWindowSize } from '../../services/useWindowSize';
 import { GridInfo } from './gridInfo';
 import { CodePenInfo } from './codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
 
-const columnNumberValues: number[] = [1, 2, 3, 4, 5];
+const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
 
 export const GridPage = memo(() => {
@@ -41,13 +42,16 @@ export const GridPage = memo(() => {
 	const [columnNumber, setColumnNumber] = useState<number>(4);
 	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
-
+	const size = useWindowSize();
 	const { getFromServer } = ServerContainer.useContainer();
 
 	const itemHeight = useMemo(() => {
-		const width = (1216 - 16 * (columnNumber - 1)) / columnNumber;
+		const windowWidth = size.width || window.innerWidth;
+		const paddingSize = 32 + 32;
+		const gridGap = 16;
+		const width = (windowWidth - paddingSize - gridGap * (columnNumber - 1)) / columnNumber;
 		return Math.round(width / aspectRatio + 80);
-	}, [columnNumber, aspectRatio]);
+	}, [useWindowSize, columnNumber, aspectRatio]);
 
 	useCurrentEffect((isCurrent) => {
 		(async () => {
