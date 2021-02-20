@@ -44,7 +44,11 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			backgroundColor: '#222',
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			//backgroundSize: '24px 24px',
-			padding: '0 8px 0 16px',
+			padding: '0 8px 0 0',
+		},
+		userAvatar: {
+			width: 49,
+			height: 49,
 		},
 		codePenTitle: {
 			flex: '1 1 auto',
@@ -53,6 +57,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			whiteSpace: 'nowrap',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
+			marginLeft: 8,
 			color: '#ccc',
 		},
 		actionButton: {
@@ -82,6 +87,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const itemRef = useRef<HTMLDivElement>(null);
 	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
 	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
+	const cpAvatar = useMemo<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi), [cpi]);
 	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
 	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
 
@@ -139,6 +145,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				/>
 			</Box>
 			<Box className={classes.gridItemHeader}>
+				<img src={`/img/avatars/${cpAvatar}.jpg`} className={classes.userAvatar} />
 				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
 					{cpTitle}
 				</Box>

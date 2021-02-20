@@ -1,5 +1,6 @@
 export interface CodePenInfo {
 	url: string;
+	avatar?: string;
 	title?: string;
 	color?: string;
 }
@@ -13,10 +14,13 @@ export class CodePenInfoHelper {
 		const res = cpi.url.trim().match(/(?:\/pen\/)(\S*)/);
 		return (res && res[1]) || '';
 	}
+	static getCodePenAvatar(cpi: CodePenInfo): string {
+		return cpi.avatar || 'tester';
+	}
 	static getCodePenTitle(cpi: CodePenInfo): string {
 		return cpi.title || CodePenInfoHelper.getCodePenUser(cpi);
 	}
 	static getCodePenColor(cpi: CodePenInfo): string {
-		return cpi.color || '';
+		return cpi.color || '#ccc';
 	}
 }

@@ -10,7 +10,7 @@ import { CodePenInfo } from './codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
 
-const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
 
 export const GridPage = memo(() => {
