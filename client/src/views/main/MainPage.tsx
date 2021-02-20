@@ -20,12 +20,10 @@ export const MainPage = memo(() => {
 			bottom: 0,
 			overflow: 'hidden',
 			backgroundColor: '#444',
-			backgroundImage: 'url("/gray.jpg")',
+			backgroundImage: 'url("/img/gray.jpg")',
 			backgroundSize: 'cover',
 			color: theme.palette.text.primary,
 			fontFamily: theme.typography.fontFamily,
-			opacity: 0,
-			animation: 'fade-in-animation 3s 3s ease-in-out forwards',
 		},
 		cover1: {
 			position: 'relative',

@@ -31,6 +31,8 @@ export const GridPage = memo(() => {
 		grid: {
 			display: 'grid',
 			gridGap: 16,
+			//opacity: 0,
+			//animation: 'fade-in-animation 1s 1s ease-in-out forwards',
 		},
 	}));
 	const classes = useStyles();

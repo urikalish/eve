@@ -56,7 +56,7 @@ export const VideoLoop = memo(({ videoName, playbackSpeed = 1, blurPixels = 0, g
 				playsInline={true}
 				className={`${classes.video} ${grayscale ? classes.grayscale : ''}`}
 			>
-				<source type="video/mp4" src={`/videos/${videoName}.mp4`} />
+				<source type="video/mp4" src={`/vid/${videoName}.mp4`} />
 			</video>
 		</Box>
 	);
