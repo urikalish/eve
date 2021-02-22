@@ -15,7 +15,7 @@ export class CodePenInfoHelper {
 		return (res && res[1]) || '';
 	}
 	static getCodePenAvatar(cpi: CodePenInfo): string {
-		return cpi.avatar || 'TestPilot';
+		return cpi.avatar || 'crossout/Mirage';
 	}
 	static getCodePenTitle(cpi: CodePenInfo): string {
 		return cpi.title || CodePenInfoHelper.getCodePenUser(cpi);
