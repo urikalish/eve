@@ -1,3 +1,5 @@
+import { AvatarHelper } from '../../services/avatarHelper';
+
 export interface CodePenInfo {
 	url: string;
 	avatar?: string;
@@ -15,7 +17,11 @@ export class CodePenInfoHelper {
 		return (res && res[1]) || '';
 	}
 	static getCodePenAvatar(cpi: CodePenInfo): string {
-		return cpi.avatar || 'crossout/Mirage';
+		if (!cpi.avatar) {
+			const allAvatars = AvatarHelper.getAllAvatars(true);
+			cpi.avatar = allAvatars[0];
+		}
+		return cpi.avatar;
 	}
 	static getCodePenTitle(cpi: CodePenInfo): string {
 		return cpi.title || CodePenInfoHelper.getCodePenUser(cpi);
