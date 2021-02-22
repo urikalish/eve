@@ -1,7 +1,7 @@
 import { CodePenInfo } from './codePenInfo';
 
 export interface GridInfo {
-	id: string;
+	id?: string;
 	name?: string;
 	codePens: CodePenInfo[];
 }

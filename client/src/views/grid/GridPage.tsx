@@ -1,14 +1,15 @@
 import React, { memo, useState, useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
-import { ServerContainer } from '../../services/useServer';
+// import { ServerContainer } from '../../services/useServer';
 import { useWindowSize } from '../../services/useWindowSize';
 import { GridInfo } from './gridInfo';
 import { CodePenInfo } from './codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
+import { LocalStorageHelper } from '../../services/localStorageHelper';
 
 function appendScript() {
 	const CODEPEN_EMBED_SCRIPT_ID = 'codePenEmbedScript';
@@ -59,15 +60,15 @@ export const GridPage = memo(() => {
 	}));
 	const classes = useStyles();
 
-	const routerParams = JSON.parse(JSON.stringify(useParams()));
-	const id = routerParams.id;
+	//const routerParams = JSON.parse(JSON.stringify(useParams()));
+	//const id = routerParams.id;
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
 	const [columnNumber, setColumnNumber] = useState<number>(4);
 	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 	const size = useWindowSize();
-	const { getFromServer } = ServerContainer.useContainer();
+	//const { getFromServer } = ServerContainer.useContainer();
 
 	const itemHeight = useMemo(() => {
 		const windowWidth = size.width || window.innerWidth;
@@ -79,11 +80,14 @@ export const GridPage = memo(() => {
 
 	useCurrentEffect((isCurrent) => {
 		(async () => {
-			const data = await getFromServer(`/api/grids/${id}`);
-			if (!data || !isCurrent()) {
-				return;
-			}
-			const gridInfo: GridInfo = JSON.parse(data).gridInfo;
+			// const data = await getFromServer(`/api/grids/${id}`);
+			// if (!data || !isCurrent()) {
+			// 	return;
+			// }
+			// const gridInfo: GridInfo = JSON.parse(data).gridInfo;
+
+			const gridInfo: GridInfo | null = LocalStorageHelper.loadFromStorage();
+
 			if (!gridInfo) {
 				return;
 			}
