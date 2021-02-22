@@ -10,6 +10,28 @@ import { CodePenInfo } from './codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
 
+function appendScript() {
+	const CODEPEN_EMBED_SCRIPT_ID = 'codePenEmbedScript';
+	let script = document.getElementById(CODEPEN_EMBED_SCRIPT_ID);
+	if (script) {
+		script.remove();
+	}
+	script = document.createElement('script');
+	script.setAttribute('id', CODEPEN_EMBED_SCRIPT_ID);
+	script.setAttribute('async', '""');
+	script.setAttribute('src', 'https://cpwebassets.codepen.io/assets/embed/ei.js');
+	document.body.appendChild(script);
+}
+
+// function hash(str: string) {
+// 	let hash = 0;
+// 	const len: number = str.length;
+// 	for (let i = 0; i < len; i++) {
+// 		hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+// 	}
+// 	return hash;
+// }
+
 const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
 
@@ -71,11 +93,7 @@ export const GridPage = memo(() => {
 				if (!isCurrent()) {
 					return;
 				}
-				const script = document.createElement('script');
-				script.setAttribute('id', 'codePenEmbedScript');
-				script.setAttribute('async', '""');
-				script.setAttribute('src', 'https://cpwebassets.codepen.io/assets/embed/ei.js');
-				document.body.appendChild(script);
+				appendScript();
 			}, 0);
 		})();
 	}, []);

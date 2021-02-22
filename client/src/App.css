@@ -20,13 +20,20 @@
   }
 }
 
+.grid-config textarea::-webkit-scrollbar,
 .grid-container::-webkit-scrollbar {
 	width: 0;
 	height: 0;
 }
+.grid-config textarea::-webkit-scrollbar-track,
 .grid-container::-webkit-scrollbar-track {
 	background: #000;
 }
+.grid-config textarea::-webkit-scrollbar-thumb,
 .grid-container::-webkit-scrollbar-thumb {
 	background: #aaa;
+}
+
+.error-color textarea {
+	color: #f66;
 }

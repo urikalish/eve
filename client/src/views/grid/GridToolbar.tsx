@@ -107,7 +107,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 	const history = useHistory();
 
 	const handleClickExit = useCallback(() => {
-		history.push('/grid');
+		history.push('/config');
 	}, []);
 
 	return (

@@ -93,7 +93,7 @@ export const Masthead = memo(() => {
 
 	const leftLinks: Array<{ text: string; to: string }> = [
 		{ text: 'Home', to: '/' },
-		{ text: 'Grid', to: '/grid' },
+		{ text: 'Grid', to: '/config' },
 		{ text: 'About', to: '/about' },
 	];
 

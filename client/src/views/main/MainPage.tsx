@@ -6,7 +6,7 @@ import { Masthead } from './Masthead';
 import { VideoLoop } from './VideoLoop';
 import { HomePage } from '../home/HomePage';
 import { GridPage } from '../grid/GridPage';
-import { GridListPage } from '../grid/GridListPage';
+import { ConfigPage } from '../grid/ConfigPage';
 import { AboutPage } from '../about/AboutPage';
 import { LoginPage } from '../login/LoginPage';
 
@@ -81,7 +81,7 @@ export const MainPage = memo(() => {
 				<Box className={classes.pageContainer}>
 					<Switch>
 						<Route path="/home" exact component={HomePage} />
-						<Route path="/grid" exact component={GridListPage} />
+						<Route path="/config" exact component={ConfigPage} />
 						<Route path="/grid/:id" exact component={GridPage} />
 						<Route path="/about" exact component={AboutPage} />
 						<Route path="/login" exact component={LoginPage} />
