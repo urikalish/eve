@@ -15,10 +15,11 @@ export class LocalStorageHelper {
 		}
 	}
 
-	static saveToStorage(gridInfo: GridInfo) {
+	static saveToStorage(gridInfo: GridInfo): GridInfo {
 		if (!gridInfo.id) {
 			gridInfo.id = Date.now().toString();
 		}
 		localStorage.setItem(`${LocalStorageHelper.KEY_GRID}`, JSON.stringify(gridInfo));
+		return gridInfo;
 	}
 }
