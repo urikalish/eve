@@ -122,4 +122,9 @@ export class AvatarHelper {
 		}
 		return avatars;
 	}
+
+	static getRandomAvatar() {
+		const allAvatars = AvatarHelper.getAllAvatars(false);
+		return allAvatars[Math.trunc(Math.random() * allAvatars.length)];
+	}
 }

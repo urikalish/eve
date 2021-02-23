@@ -18,8 +18,7 @@ export class CodePenInfoHelper {
 	}
 	static getCodePenAvatar(cpi: CodePenInfo): string {
 		if (!cpi.avatar) {
-			const allAvatars = AvatarHelper.getAllAvatars(true);
-			cpi.avatar = allAvatars[0];
+			cpi.avatar = AvatarHelper.getRandomAvatar();
 		}
 		return cpi.avatar;
 	}

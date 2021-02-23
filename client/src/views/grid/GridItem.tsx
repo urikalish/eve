@@ -120,7 +120,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}, [height]);
 
 	const handleClickAvatar = useCallback(() => {
-		setAvatar(AvatarHelper.getAllAvatars(true)[0]);
+		setAvatar(AvatarHelper.getRandomAvatar());
 	}, []);
 
 	const handleClickBlur = useCallback(() => {
