@@ -18,6 +18,17 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
+		},
+		userAvatar: {
+			position: 'absolute',
+			left: 2,
+			top: 2,
+			width: 49,
+			height: 49,
+			zIndex: 1,
+		},
+		opacityWrapper: {
+			height: '100%',
 			opacity: 0.7,
 		},
 		jsContainer: {
@@ -46,10 +57,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			//backgroundSize: '24px 24px',
 			padding: '0 8px 0 0',
 		},
-		userAvatar: {
-			width: 49,
-			height: 49,
-		},
 		codePenTitle: {
 			flex: '1 1 auto',
 			fontSize: 13,
@@ -57,7 +64,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			whiteSpace: 'nowrap',
 			overflow: 'hidden',
 			textOverflow: 'ellipsis',
-			marginLeft: 8,
+			marginLeft: 60,
 			color: '#ccc',
 		},
 		actionButton: {
@@ -122,39 +129,45 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<Box id="js-container" className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`} style={{ display: showCode ? 'block' : 'none' }}>
+			<img src={`/img/avatars/${cpAvatar}.jpg`} className={classes.userAvatar} />
+			<Box className={classes.opacityWrapper}>
 				<Box
-					className="codepen"
-					data-height={height}
-					data-theme-id="dark"
-					data-default-tab="js"
-					data-user={cpUser}
-					data-pen-title={cpId}
-					data-slug-hash={cpId}
-				/>
-			</Box>
-			<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
-				<p
-					className="codepen"
-					data-height={height}
-					data-theme-id="dark"
-					data-default-tab="result"
-					data-user={cpUser}
-					data-pen-title={cpId}
-					data-slug-hash={cpId}
-				/>
-			</Box>
-			<Box className={classes.gridItemHeader}>
-				<img src={`/img/avatars/${cpAvatar}.jpg`} className={classes.userAvatar} />
-				<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
-					{cpTitle}
+					id="js-container"
+					className={`${classes.jsContainer} ${blurCode ? classes.blurCode : ''}`}
+					style={{ display: showCode ? 'block' : 'none' }}
+				>
+					<Box
+						className="codepen"
+						data-height={height}
+						data-theme-id="dark"
+						data-default-tab="js"
+						data-user={cpUser}
+						data-pen-title={cpId}
+						data-slug-hash={cpId}
+					/>
 				</Box>
-				{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
-				{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
-				<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
-				<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
+				<Box id="result-container" className={classes.resultContainer} style={{ display: showCode ? 'none' : 'block' }}>
+					<p
+						className="codepen"
+						data-height={height}
+						data-theme-id="dark"
+						data-default-tab="result"
+						data-user={cpUser}
+						data-pen-title={cpId}
+						data-slug-hash={cpId}
+					/>
+				</Box>
+				<Box className={classes.gridItemHeader}>
+					<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
+						{cpTitle}
+					</Box>
+					{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
+					{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
+					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
+					<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
+				</Box>
+				<Box className={classes.gridItemFooter} />
 			</Box>
-			<Box className={classes.gridItemFooter} />
 		</div>
 	);
 });

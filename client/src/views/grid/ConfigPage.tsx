@@ -49,8 +49,8 @@ export const ConfigPage = memo(() => {
 			userSelect: 'none',
 		},
 		form: {},
-		configJson: {
-			width: 600,
+		textField: {
+			width: 800,
 			'& label.Mui-focused': {
 				color: '#fff',
 			},
@@ -108,10 +108,10 @@ export const ConfigPage = memo(() => {
 					onChange={handleChangeText}
 					label=""
 					multiline
-					rows={20}
+					rows={24}
 					variant="filled"
 					color="secondary"
-					className={`${classes.configJson} grid-config ${configOK ? '' : 'error-color'}`}
+					className={`${classes.textField} grid-config ${configOK ? '' : 'error-color'}`}
 				/>
 			</form>
 			<Box className={classes.actionButtons}>
