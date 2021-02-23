@@ -1,5 +1,5 @@
 export class AvatarHelper {
-	static getAllAvatars(shuffle: boolean) {
+	static getAllAvatars(shuffle: boolean): string[] {
 		const avatars = [
 			'AirShaman',
 			'Aleph',
@@ -123,7 +123,7 @@ export class AvatarHelper {
 		return avatars;
 	}
 
-	static getRandomAvatar() {
+	static getRandomAvatar(): string {
 		const allAvatars = AvatarHelper.getAllAvatars(false);
 		return allAvatars[Math.trunc(Math.random() * allAvatars.length)];
 	}
