@@ -6,6 +6,7 @@ import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo, CodePenInfoHelper } from './codePenInfo';
+import { AvatarHelper } from '../../services/avatarHelper';
 
 interface GridItemProps {
 	index: number;
@@ -21,11 +22,19 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		},
 		userAvatar: {
 			position: 'absolute',
-			left: 2,
-			top: 2,
-			width: 49,
-			height: 49,
+			left: 4,
+			top: 4,
+			width: 45,
+			height: 45,
+			border: '1px solid #666',
+			borderRadius: '50%',
+			cursor: 'pointer',
 			zIndex: 1,
+			transition: 'all 0.4s ease-in-out',
+			'&:hover': {
+				width: 100,
+				height: 100,
+			},
 		},
 		opacityWrapper: {
 			height: '100%',
@@ -91,10 +100,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const classes = useStyles();
 
 	const [blurCode, setBlurCode] = useState<boolean>(true);
+	const [avatar, setAvatar] = useState<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
 	const itemRef = useRef<HTMLDivElement>(null);
 	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
 	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
-	const cpAvatar = useMemo<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi), [cpi]);
 	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
 	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
 
@@ -108,6 +117,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
 		});
 	}, [height]);
+
+	const handleClickAvatar = useCallback(() => {
+		setAvatar(AvatarHelper.getAllAvatars(true)[0]);
+	}, []);
 
 	const handleClickBlur = useCallback(() => {
 		setBlurCode((val) => !val);
@@ -129,7 +142,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<img src={`/img/avatars/${cpAvatar}.jpg`} className={classes.userAvatar} />
+			<img src={`/img/avatars/${avatar}.jpg`} onClick={handleClickAvatar} className={classes.userAvatar} />
 			<Box className={classes.opacityWrapper}>
 				<Box
 					id="js-container"
