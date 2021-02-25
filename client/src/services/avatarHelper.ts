@@ -10,7 +10,6 @@ export class AvatarHelper {
 				name += '0';
 			}
 			name += i.toString();
-			console.log(name);
 			avatars.push(name);
 		}
 		if (!shuffle) {

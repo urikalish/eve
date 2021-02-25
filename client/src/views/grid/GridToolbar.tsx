@@ -57,6 +57,9 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 			backgroundColor: '#222',
 			padding: '0 4px',
 		},
+		noPadding: {
+			padding: 0,
+		},
 		panelText: {
 			lineHeight: '24px',
 			color: '#999',
@@ -146,7 +149,7 @@ export const GridToolbar = memo(({ options, onClickRefresh, onToggleCode, onChan
 				</Box>
 			</Box>
 			<Box className={classes.groupRight}>
-				<Box className={`${classes.panel}`}>
+				<Box className={`${classes.panel} ${classes.noPadding}`}>
 					<CloseIcon onClick={handleClickExit} className={classes.actionButton} titleAccess="Exit grid" />
 				</Box>
 			</Box>
