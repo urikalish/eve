@@ -5,7 +5,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { CodePenInfo, CodePenInfoHelper } from './codePenInfo';
+import { CodePenInfo, CodePenInfoHelper } from '../../services/codePenInfo';
 import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
 import { LocalStorageHelper } from '../../services/localStorageHelper';

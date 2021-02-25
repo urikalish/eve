@@ -1,4 +1,4 @@
-import { AvatarHelper } from '../../services/avatarHelper';
+import { AvatarHelper } from './avatarHelper';
 
 export interface CodePenInfo {
 	url: string;

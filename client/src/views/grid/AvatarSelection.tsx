@@ -43,7 +43,7 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 	return (
 		<Box id="AvatarSelection" className={`${classes.root} no-scrollbar`}>
 			{avatars.map((avatar) => (
-				<img src={`/img/avatars/${avatar}.jpg`} key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatar} />
+				<img src={`/img/avatars/${avatar}.jpg`} key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatar} title={avatar} />
 			))}
 		</Box>
 	);

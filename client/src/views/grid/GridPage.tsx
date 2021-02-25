@@ -7,8 +7,8 @@ import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { CodePenScriptHelper } from '../../services/codePenScriptHelper';
 // import { ServerContainer } from '../../services/useServer';
 import { useWindowSize } from '../../services/useWindowSize';
-import { GridInfo } from './gridInfo';
-import { CodePenInfo } from './codePenInfo';
+import { GridInfo } from '../../services/gridInfo';
+import { CodePenInfo } from '../../services/codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
 

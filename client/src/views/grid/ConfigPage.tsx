@@ -7,7 +7,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import { TextField } from '@material-ui/core';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
-import { GridInfo } from './gridInfo';
+import { GridInfo } from '../../services/gridInfo';
 
 function checkJson(jsonStr: string) {
 	try {

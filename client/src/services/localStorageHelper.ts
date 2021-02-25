@@ -1,4 +1,4 @@
-import { GridInfo } from '../views/grid/gridInfo';
+import { GridInfo } from './gridInfo';
 
 export class LocalStorageHelper {
 	static KEY_GRID = 'grid';
