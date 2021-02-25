@@ -108,7 +108,7 @@ export const ConfigPage = memo(() => {
 					onChange={handleChangeText}
 					label=""
 					multiline
-					rows={24}
+					rows={30}
 					variant="filled"
 					color="secondary"
 					className={`${classes.textField} no-scrollbar ${configOK ? '' : 'error-color'}`}

@@ -13,13 +13,13 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			position: 'absolute',
 			left: '50%',
 			transform: 'translateX(-50%)',
-			top: 120,
-			bottom: 120,
-			backgroundColor: '#222',
+			top: 116,
+			bottom: 16,
+			backgroundColor: 'transparent',
 			color: '#fff',
 			display: 'grid',
 			gridTemplateColumns: 'repeat(5, 256px)',
-			gridGap: 0,
+			gridGap: 16,
 			overflow: 'auto',
 		},
 		avatar: {
@@ -27,6 +27,8 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			width: 256,
 			cursor: 'pointer',
 			userSelect: 'none',
+			borderRadius: '16px',
+			border: '1px solid #333',
 		},
 	}));
 	const classes = useStyles();

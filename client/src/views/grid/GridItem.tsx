@@ -147,17 +147,29 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	}, []);
 
 	const handleClickAvatar = useCallback(() => {
+		const elm = document.getElementById('root');
+		if (elm) {
+			elm.style.filter = 'blur(4px)';
+		}
 		setAvatarSelection(true);
 	}, []);
 
 	const handleCloseAvatarSelection = useCallback(() => {
 		setAvatarSelection(false);
+		const elm = document.getElementById('root');
+		if (elm) {
+			elm.style.filter = 'none';
+		}
 	}, []);
 
 	const handleSelectAvatar = useCallback((newAvatar) => {
 		setAvatarSelection(false);
 		setAvatarName(newAvatar);
 		LocalStorageHelper.updateAvatar(cpi.url, newAvatar);
+		const elm = document.getElementById('root');
+		if (elm) {
+			elm.style.filter = 'none';
+		}
 	}, []);
 
 	return (
