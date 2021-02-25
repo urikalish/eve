@@ -72,7 +72,7 @@ export const ConfigPage = memo(() => {
 
 	const configFieldRef = useRef(null);
 	const [configStr, setConfigStr] = useState<string>(() => {
-		const configObj = LocalStorageHelper.loadFromStorage() || getDemoConfig();
+		const configObj = LocalStorageHelper.load() || getDemoConfig();
 		return JSON.stringify(configObj, null, 2);
 	});
 	const [configOK, setConfigOK] = useState<boolean>(true);
@@ -88,13 +88,13 @@ export const ConfigPage = memo(() => {
 
 	const handleClickSave = useCallback(() => {
 		const configObj = JSON.parse(configStr);
-		LocalStorageHelper.saveToStorage(configObj);
+		LocalStorageHelper.save(configObj);
 		setConfigStr(JSON.stringify(configObj, null, 2));
 	}, [configStr]);
 
 	const handleClickLaunch = useCallback(() => {
 		const configObj = JSON.parse(configStr);
-		LocalStorageHelper.saveToStorage(configObj);
+		LocalStorageHelper.save(configObj);
 		history.push(`/grid/${configObj.id}`);
 	}, [configStr]);
 
@@ -111,7 +111,7 @@ export const ConfigPage = memo(() => {
 					rows={24}
 					variant="filled"
 					color="secondary"
-					className={`${classes.textField} grid-config ${configOK ? '' : 'error-color'}`}
+					className={`${classes.textField} no-scrollbar ${configOK ? '' : 'error-color'}`}
 				/>
 			</form>
 			<Box className={classes.actionButtons}>

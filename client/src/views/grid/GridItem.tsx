@@ -6,7 +6,9 @@ import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo, CodePenInfoHelper } from './codePenInfo';
-import { AvatarHelper } from '../../services/avatarHelper';
+import Modal from '@material-ui/core/Modal';
+import { AvatarSelection } from './AvatarSelection';
+import { LocalStorageHelper } from '../../services/localStorageHelper';
 
 interface GridItemProps {
 	index: number;
@@ -20,7 +22,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		root: {
 			position: 'relative',
 		},
-		userAvatar: {
+		avatar: {
 			position: 'absolute',
 			left: 2,
 			top: 2,
@@ -97,16 +99,23 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
 			//backgroundSize: '24px 24px',
 		},
+		avatarSelectionModal: {
+			left: 0,
+			right: 0,
+			top: 0,
+			bottom: 0,
+		},
 	}));
 	const classes = useStyles();
 
 	const [blurCode, setBlurCode] = useState<boolean>(true);
-	const [avatar, setAvatar] = useState<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
+	const [avatarName, setAvatarName] = useState<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
 	const itemRef = useRef<HTMLDivElement>(null);
 	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
 	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
 	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
 	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
+	const [avatarSelection, setAvatarSelection] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!itemRef.current) {
@@ -118,10 +127,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
 		});
 	}, [height]);
-
-	const handleClickAvatar = useCallback(() => {
-		setAvatar(AvatarHelper.getRandomAvatar());
-	}, []);
 
 	const handleClickBlur = useCallback(() => {
 		setBlurCode((val) => !val);
@@ -141,9 +146,23 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		window.open(cpi.url, '_blank');
 	}, []);
 
+	const handleClickAvatar = useCallback(() => {
+		setAvatarSelection(true);
+	}, []);
+
+	const handleCloseAvatarSelection = useCallback(() => {
+		setAvatarSelection(false);
+	}, []);
+
+	const handleSelectAvatar = useCallback((newAvatar) => {
+		setAvatarSelection(false);
+		setAvatarName(newAvatar);
+		LocalStorageHelper.updateAvatar(cpi.url, newAvatar);
+	}, []);
+
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<img src={`/img/avatars/${avatar}.jpg`} onClick={handleClickAvatar} className={classes.userAvatar} />
+			<img src={`/img/avatars/${avatarName}.jpg`} onClick={handleClickAvatar} className={classes.avatar} />
 			<Box className={classes.opacityWrapper}>
 				<Box
 					id="js-container"
@@ -181,6 +200,11 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 					<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 				</Box>
 				<Box className={classes.gridItemFooter} />
+				<Modal open={avatarSelection} onClose={handleCloseAvatarSelection} className={classes.avatarSelectionModal}>
+					<Box>
+						<AvatarSelection onSelectAvatar={handleSelectAvatar} />
+					</Box>
+				</Modal>
 			</Box>
 		</div>
 	);

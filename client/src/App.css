@@ -20,17 +20,17 @@
   }
 }
 
-.grid-config textarea::-webkit-scrollbar,
-.grid-container::-webkit-scrollbar {
+.no-scrollbar::-webkit-scrollbar,
+.no-scrollbar textarea::-webkit-scrollbar {
 	width: 0;
 	height: 0;
 }
-.grid-config textarea::-webkit-scrollbar-track,
-.grid-container::-webkit-scrollbar-track {
+.no-scrollbar::-webkit-scrollbar-track,
+.no-scrollbar textarea::-webkit-scrollbar-track {
 	background: #000;
 }
-.grid-config textarea::-webkit-scrollbar-thumb,
-.grid-container::-webkit-scrollbar-thumb {
+.no-scrollbar::-webkit-scrollbar-thumb,
+.no-scrollbar textarea::-webkit-scrollbar-thumb {
 	background: #aaa;
 }
 

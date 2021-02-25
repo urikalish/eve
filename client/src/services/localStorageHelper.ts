@@ -3,7 +3,7 @@ import { GridInfo } from '../views/grid/gridInfo';
 export class LocalStorageHelper {
 	static KEY_GRID = 'grid';
 
-	static loadFromStorage(): GridInfo | null {
+	static load(): GridInfo | null {
 		const gridInfoStr = localStorage.getItem(`${LocalStorageHelper.KEY_GRID}`);
 		if (!gridInfoStr) {
 			return null;
@@ -15,11 +15,23 @@ export class LocalStorageHelper {
 		}
 	}
 
-	static saveToStorage(gridInfo: GridInfo): GridInfo {
+	static save(gridInfo: GridInfo): GridInfo {
 		if (!gridInfo.id) {
 			gridInfo.id = Date.now().toString();
 		}
 		localStorage.setItem(`${LocalStorageHelper.KEY_GRID}`, JSON.stringify(gridInfo));
 		return gridInfo;
+	}
+
+	static updateAvatar(url: string, newAvatar: string): void {
+		const gridInfo = LocalStorageHelper.load();
+		if (!gridInfo) {
+			return;
+		}
+		const codePens = gridInfo.codePens.filter((cpi) => cpi.url === url);
+		codePens.forEach((cp) => {
+			cp.avatar = newAvatar;
+		});
+		LocalStorageHelper.save(gridInfo);
 	}
 }

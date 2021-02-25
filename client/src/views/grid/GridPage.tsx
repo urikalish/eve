@@ -3,35 +3,14 @@ import React, { memo, useState, useCallback, useMemo } from 'react';
 import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
+import { LocalStorageHelper } from '../../services/localStorageHelper';
+import { CodePenScriptHelper } from '../../services/codePenScriptHelper';
 // import { ServerContainer } from '../../services/useServer';
 import { useWindowSize } from '../../services/useWindowSize';
 import { GridInfo } from './gridInfo';
 import { CodePenInfo } from './codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
-import { LocalStorageHelper } from '../../services/localStorageHelper';
-
-function appendScript() {
-	const CODEPEN_EMBED_SCRIPT_ID = 'codePenEmbedScript';
-	let script = document.getElementById(CODEPEN_EMBED_SCRIPT_ID);
-	if (script) {
-		script.remove();
-	}
-	script = document.createElement('script');
-	script.setAttribute('id', CODEPEN_EMBED_SCRIPT_ID);
-	script.setAttribute('async', '""');
-	script.setAttribute('src', 'https://cpwebassets.codepen.io/assets/embed/ei.js');
-	document.body.appendChild(script);
-}
-
-// function hash(str: string) {
-// 	let hash = 0;
-// 	const len: number = str.length;
-// 	for (let i = 0; i < len; i++) {
-// 		hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
-// 	}
-// 	return hash;
-// }
 
 const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
@@ -86,7 +65,7 @@ export const GridPage = memo(() => {
 			// }
 			// const gridInfo: GridInfo = JSON.parse(data).gridInfo;
 
-			const gridInfo: GridInfo | null = LocalStorageHelper.loadFromStorage();
+			const gridInfo: GridInfo | null = LocalStorageHelper.load();
 
 			if (!gridInfo) {
 				return;
@@ -97,7 +76,7 @@ export const GridPage = memo(() => {
 				if (!isCurrent()) {
 					return;
 				}
-				appendScript();
+				CodePenScriptHelper.appendScript();
 			}, 0);
 		})();
 	}, []);
@@ -138,7 +117,7 @@ export const GridPage = memo(() => {
 					onChangeAspectRatio={handleChangeAspectRatio}
 				/>
 			</Box>
-			<Box className={`grid-container ${classes.gridContainer}`}>
+			<Box className={`${classes.gridContainer} no-scrollbar`}>
 				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
 					{codePensInfo.map((cpi, index) => (
 						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} />
