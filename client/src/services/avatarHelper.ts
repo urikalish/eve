@@ -1,6 +1,6 @@
 export class AvatarHelper {
 	static getAllAvatars(shuffle: boolean): string[] {
-		const NUM_OF_AVATARS = 140;
+		const NUM_OF_AVATARS = 150;
 		const avatars = [];
 		for (let i = 0; i < NUM_OF_AVATARS; i++) {
 			let name = 'a';
