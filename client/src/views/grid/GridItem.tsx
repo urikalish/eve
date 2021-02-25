@@ -33,11 +33,11 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			cursor: 'pointer',
 			zIndex: 1,
 			transition: 'all 0.4s ease-in-out',
-			'&:hover': {
-				width: 160,
-				height: 160,
-				borderRadius: '0 50% 50% 50%',
-			},
+			// '&:hover': {
+			// 	width: 160,
+			// 	height: 160,
+			// 	borderRadius: '0 50% 50% 50%',
+			// },
 		},
 		opacityWrapper: {
 			height: '100%',
