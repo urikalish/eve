@@ -16,6 +16,16 @@
   url('./fonts/play-v11-latin-700.woff') format('woff');
 }
 
+/* Share Tech Mono font */
+@font-face {
+	font-family: 'Share Tech Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Share Tech Mono'), local('Share-Tech-Mono'),
+	url('./fonts/share-tech-mono-v10-latin-regular.woff2') format('woff2'),
+	url('./fonts/share-tech-mono-v10-latin-regular.woff') format('woff');
+}
+
 *,
 *::before,
 *::after {

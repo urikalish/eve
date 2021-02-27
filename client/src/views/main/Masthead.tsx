@@ -74,11 +74,13 @@ export const Masthead = memo(() => {
 			position: 'relative',
 			width: 75,
 			left: 35,
+			fontFamily: '"Share Tech Mono", sans-serif',
 		},
 		appTitle2: {
 			position: 'relative',
 			width: 75,
 			left: -35,
+			fontFamily: '"Share Tech Mono", sans-serif',
 		},
 		rightPart: {
 			display: 'flex',

@@ -48,7 +48,7 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			display: 'grid',
 			gridTemplateColumns: 'repeat(5, 256px)',
 			gridTemplateRows: '256px',
-			gridGap: '16px',
+			gridGap: 16,
 			borderRadius: '16px',
 			overflow: 'auto',
 		},
