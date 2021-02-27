@@ -5,7 +5,7 @@ import { AvatarHelper } from '../../services/avatarHelper';
 import CloseIcon from '@material-ui/icons/Close';
 
 interface AvatarSelectionProps {
-	onSelectAvatar: (avatar: string) => void;
+	onSelectAvatar: (avatar: number) => void;
 }
 
 export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) => {
@@ -88,7 +88,7 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 	);
 
 	const handleClickExit = useCallback(() => {
-		onSelectAvatar('');
+		onSelectAvatar(-1);
 	}, []);
 
 	return (
@@ -97,8 +97,8 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			<Box className={`${classes.avatarGrid} no-scrollbar`}>
 				{avatars.map((avatar) => (
 					<Box key={avatar}>
-						<Box data-avatar={avatar.substring(1)} className={classes.avatarWrapper}>
-							<img src={`/img/avatars/${avatar}.jpg`} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatar} />
+						<Box data-avatar={avatar} className={classes.avatarWrapper}>
+							<img src={AvatarHelper.getAvatarFilePath(avatar)} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatar} />
 						</Box>
 					</Box>
 				))}

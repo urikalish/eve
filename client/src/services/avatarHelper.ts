@@ -1,16 +1,10 @@
+const NUM_OF_AVATARS = 150;
+
 export class AvatarHelper {
-	static getAllAvatars(shuffle: boolean): string[] {
-		const NUM_OF_AVATARS = 150;
+	static getAllAvatars(shuffle: boolean): number[] {
 		const avatars = [];
 		for (let i = 0; i < NUM_OF_AVATARS; i++) {
-			let name = 'a';
-			if (i < 10) {
-				name += '00';
-			} else if (i < 100) {
-				name += '0';
-			}
-			name += i.toString();
-			avatars.push(name);
+			avatars.push(i);
 		}
 		if (!shuffle) {
 			return avatars;
@@ -28,8 +22,17 @@ export class AvatarHelper {
 		return avatars;
 	}
 
-	static getRandomAvatar(): string {
-		const allAvatars = AvatarHelper.getAllAvatars(false);
-		return allAvatars[Math.trunc(Math.random() * allAvatars.length)];
+	static getRandomAvatar(): number {
+		return Math.trunc(Math.random() * NUM_OF_AVATARS);
+	}
+
+	static getAvatarFilePath(avatar: number): string {
+		let prefix = '';
+		if (avatar < 10) {
+			prefix += '00';
+		} else if (avatar < 100) {
+			prefix += '0';
+		}
+		return `/img/avatars/a${prefix}${avatar}.jpg`;
 	}
 }

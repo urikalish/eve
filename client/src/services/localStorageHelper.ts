@@ -23,7 +23,7 @@ export class LocalStorageHelper {
 		return gridInfo;
 	}
 
-	static updateAvatar(url: string, newAvatar: string): void {
+	static updateAvatar(url: string, newAvatar: number): void {
 		const gridInfo = LocalStorageHelper.load();
 		if (!gridInfo) {
 			return;

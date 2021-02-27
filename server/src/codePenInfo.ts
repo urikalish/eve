@@ -1,6 +1,6 @@
 export interface CodePenInfo {
 	url: string;
-	avatar?: string;
+	avatar?: number;
 	title?: string;
 	color?: string;
 }

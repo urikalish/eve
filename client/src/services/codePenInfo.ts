@@ -2,7 +2,7 @@ import { AvatarHelper } from './avatarHelper';
 
 export interface CodePenInfo {
 	url: string;
-	avatar?: string;
+	avatar?: number;
 	title?: string;
 	color?: string;
 }
@@ -16,8 +16,8 @@ export class CodePenInfoHelper {
 		const res = cpi.url.trim().match(/(?:\/pen\/)(\S*)/);
 		return (res && res[1]) || '';
 	}
-	static getCodePenAvatar(cpi: CodePenInfo): string {
-		if (!cpi.avatar) {
+	static getCodePenAvatar(cpi: CodePenInfo): number {
+		if (cpi.avatar === undefined) {
 			cpi.avatar = AvatarHelper.getRandomAvatar();
 		}
 		return cpi.avatar;

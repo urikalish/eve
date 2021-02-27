@@ -9,6 +9,7 @@ import { CodePenInfo, CodePenInfoHelper } from '../../services/codePenInfo';
 import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
+import { AvatarHelper } from '../../services/avatarHelper';
 
 interface GridItemProps {
 	index: number;
@@ -109,7 +110,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const classes = useStyles();
 
 	const [blurCode, setBlurCode] = useState<boolean>(true);
-	const [avatarName, setAvatarName] = useState<string>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
+	const [avatar, setAvatar] = useState<number>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
 	const itemRef = useRef<HTMLDivElement>(null);
 	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
 	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
@@ -168,16 +169,16 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		if (elm) {
 			elm.style.filter = 'none';
 		}
-		if (!newAvatar) {
+		if (newAvatar === -1) {
 			return;
 		}
-		setAvatarName(newAvatar);
+		setAvatar(newAvatar);
 		LocalStorageHelper.updateAvatar(cpi.url, newAvatar);
 	}, []);
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<img src={`/img/avatars/${avatarName}.jpg`} onClick={handleClickAvatar} className={classes.avatar} />
+			<img src={AvatarHelper.getAvatarFilePath(avatar)} onClick={handleClickAvatar} className={classes.avatar} />
 			<Box className={classes.opacityWrapper}>
 				<Box
 					id="js-container"
