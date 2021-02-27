@@ -42,29 +42,38 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			left: '50%',
 			transform: 'translateX(-50%)',
 			top: 116,
-			bottom: 16,
+			bottom: 8,
 			backgroundColor: 'transparent',
 			color: '#fff',
 			display: 'grid',
 			gridTemplateColumns: 'repeat(5, 256px)',
-			gridGap: '8px 16px',
+			gridTemplateRows: '256px',
+			gridGap: '16px',
 			overflow: 'auto',
 		},
 		avatarWrapper: {
 			position: 'relative',
+			height: 256,
+			transition: 'all 0.1s ease-in-out',
+			opacity: 0.9,
+			'&:hover': {
+				opacity: 1,
+			},
 			'&:after': {
 				content: 'attr(data-avatar) " "',
 				position: 'absolute',
-				left: 1,
-				right: 1,
-				bottom: 7,
-				height: 17,
+				top: 8,
+				left: 8,
+				width: 28,
+				height: 28,
+				border: '1px solid #666',
+				borderRadius: '50%',
 				backgroundColor: '#111',
-				borderRadius: '0 0 8px 8px',
-				opacity: '0.5',
+				paddingTop: 6,
 				color: '#fff',
-				fontSize: 14,
+				fontSize: 11,
 				textAlign: 'center',
+				opacity: '0.5',
 			},
 		},
 		avatar: {
@@ -72,7 +81,7 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			width: 256,
 			cursor: 'pointer',
 			userSelect: 'none',
-			borderRadius: '8px',
+			borderRadius: '16px',
 			border: '1px solid #333',
 		},
 	}));
@@ -96,10 +105,8 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			<CloseIcon onClick={handleClickExit} className={classes.actionButton} titleAccess="Close" />
 			<Box className={`${classes.avatarGrid} no-scrollbar`}>
 				{avatars.map((avatar) => (
-					<Box key={avatar}>
-						<Box data-avatar={avatar} className={classes.avatarWrapper}>
-							<img src={AvatarHelper.getAvatarFilePath(avatar)} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatar} />
-						</Box>
+					<Box key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatarWrapper}>
+						<img src={AvatarHelper.getAvatarFilePath(avatar)} className={classes.avatar} />
 					</Box>
 				))}
 			</Box>
