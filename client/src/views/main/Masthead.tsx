@@ -74,13 +74,11 @@ export const Masthead = memo(() => {
 			position: 'relative',
 			width: 75,
 			left: 35,
-			fontFamily: '"Share Tech Mono", Consolas, monospace',
 		},
 		appTitle2: {
 			position: 'relative',
 			width: 75,
 			left: -35,
-			fontFamily: '"Share Tech Mono", Consolas, monospace',
 		},
 		rightPart: {
 			display: 'flex',
@@ -138,9 +136,9 @@ export const Masthead = memo(() => {
 					</Box>
 				</Box>
 				<Box onClick={handleClickHomeIcon} className={classes.centerPart}>
-					<Typography variant="h4" className={classes.appTitle1}>{`c0de`}</Typography>
+					<Typography variant="h4" className={`${classes.appTitle1} mono`}>{`c0de`}</Typography>
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
-					<Typography variant="h4" className={classes.appTitle2}>{`gr1d`}</Typography>
+					<Typography variant="h4" className={`${classes.appTitle2} mono`}>{`gr1d`}</Typography>
 				</Box>
 				<Box className={classes.rightPart}>
 					<Box className={classes.navLinks}>

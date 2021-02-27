@@ -37,3 +37,7 @@
 .error-color textarea {
 	color: #f66;
 }
+
+.mono {
+	font-family: "Share Tech Mono", Consolas, monospace !important;
+}
