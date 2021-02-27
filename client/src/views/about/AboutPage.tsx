@@ -11,16 +11,23 @@ export const AboutPage = memo(() => {
 			display: 'grid',
 			justifyContent: 'center',
 			alignContent: 'center',
-			borderRadius: 8,
-			color: theme.palette.text.primary,
+			gridTemplateColumns: 'auto',
 			userSelect: 'none',
+		},
+		text: {
+			fontFamily: '"Share Tech Mono", Consolas, monospace',
 		},
 	}));
 	const classes = useStyles();
 
 	return (
 		<Box id="AboutPage" className={classes.root}>
-			<Typography variant="subtitle1">by Uri Kalish</Typography>
+			<Typography variant="h5" className={classes.text}>{`App....................c0de_gr1d`}</Typography>
+			<Typography variant="h5" className={classes.text}>{`Version....................1.0.0`}</Typography>
+			<Typography variant="h5" className={classes.text}>{`UI_framework...............React`}</Typography>
+			<Typography variant="h5" className={classes.text}>{`UI_components...........Material`}</Typography>
+			<Typography variant="h5" className={classes.text}>{`Code_frames..............CodePen`}</Typography>
+			<Typography variant="h5" className={classes.text}>{`Developed_by..........Uri_Kalish`}</Typography>
 		</Box>
 	);
 });
