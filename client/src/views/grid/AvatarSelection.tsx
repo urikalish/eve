@@ -54,10 +54,13 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 		avatarWrapper: {
 			position: 'relative',
 			height: 256,
-			transition: 'all 0.1s ease-in-out',
-			opacity: 0.9,
+			border: '1px solid #333',
+			borderRadius: '16px',
+			overflow: 'hidden',
+			transition: 'all 0.25s ease-in-out',
+			filter: 'grayscale(0.2)',
 			'&:hover': {
-				opacity: 1,
+				filter: 'grayscale(0)',
 			},
 			'&:after': {
 				content: 'attr(data-avatar) " "',
@@ -81,8 +84,6 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			width: 256,
 			cursor: 'pointer',
 			userSelect: 'none',
-			borderRadius: '16px',
-			border: '1px solid #333',
 		},
 	}));
 	const classes = useStyles();
