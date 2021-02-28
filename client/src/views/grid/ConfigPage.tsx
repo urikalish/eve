@@ -50,9 +50,10 @@ export const ConfigPage = memo(() => {
 		},
 		form: {},
 		textField: {
-			width: 800,
+			width: 700,
 			'& .MuiInputBase-root': {
 				fontFamily: '"Share Tech Mono", Consolas, monospace',
+				fontSize: 14,
 			},
 			'& label.Mui-focused': {
 				color: '#fff',
