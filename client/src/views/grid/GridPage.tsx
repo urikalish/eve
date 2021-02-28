@@ -43,7 +43,7 @@ export const GridPage = memo(() => {
 	//const id = routerParams.id;
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
-	const [columnNumber, setColumnNumber] = useState<number>(4);
+	const [columnNumber, setColumnNumber] = useState<number>(5);
 	const [aspectRatio, setAspectRatio] = useState<number>(2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 	const size = useWindowSize();

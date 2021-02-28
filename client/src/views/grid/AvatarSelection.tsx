@@ -93,7 +93,7 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 
 	const handleClickAvatar = useCallback(
 		(e) => {
-			onSelectAvatar(e.currentTarget.dataset.avatar);
+			onSelectAvatar(parseInt(e.currentTarget.dataset.avatar));
 		},
 		[onSelectAvatar],
 	);
