@@ -10,7 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { AvatarHelper } from '../../services/avatarHelper';
-import {TextHelper} from "../../services/textHelper";
+import { TextHelper } from '../../services/textHelper';
 
 interface GridItemProps {
 	index: number;
