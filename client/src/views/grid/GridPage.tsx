@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box/Box';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { CodePenScriptHelper } from '../../services/codePenScriptHelper';
 // import { ServerContainer } from '../../services/useServer';
-import { useWindowSize } from '../../services/useWindowSize';
+import { useWindowSize } from '../../hooks/useWindowSize';
 import { GridInfo } from '../../services/gridInfo';
 import { CodePenInfo } from '../../services/codePenInfo';
 import { GridToolbar } from './GridToolbar';

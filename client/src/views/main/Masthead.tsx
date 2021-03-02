@@ -8,6 +8,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Typography } from '@material-ui/core';
 import hackerImage from '../../images/hacker.png';
 import Button from '@material-ui/core/Button';
+import { AppDataHelper } from '../../services/appDataHelper';
 
 export const Masthead = memo(() => {
 	const useStyles = makeStyles(() => ({
@@ -136,9 +137,13 @@ export const Masthead = memo(() => {
 					</Box>
 				</Box>
 				<Box onClick={handleClickHomeIcon} className={classes.centerPart}>
-					<Typography variant="h4" className={`${classes.appTitle1} mono`}>{`c0de`}</Typography>
+					<Typography variant="h4" className={`${classes.appTitle1} mono`}>
+						{AppDataHelper.appNamePart1}
+					</Typography>
 					<img src={hackerImage} alt="logo" className={classes.appLogo} />
-					<Typography variant="h4" className={`${classes.appTitle2} mono`}>{`gr1d`}</Typography>
+					<Typography variant="h4" className={`${classes.appTitle2} mono`}>
+						{AppDataHelper.appNamePart2}
+					</Typography>
 				</Box>
 				<Box className={classes.rightPart}>
 					<Box className={classes.navLinks}>
@@ -152,7 +157,7 @@ export const Masthead = memo(() => {
 							))}
 						</List>
 					</Box>
-					<Button onClick={handleClickLogin} variant="contained" size="small" className={classes.actionButton}>
+					<Button disabled={true} onClick={handleClickLogin} variant="contained" size="small" className={classes.actionButton}>
 						Log In
 					</Button>
 				</Box>

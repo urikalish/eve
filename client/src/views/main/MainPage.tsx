@@ -9,6 +9,8 @@ import { GridPage } from '../grid/GridPage';
 import { ConfigPage } from '../grid/ConfigPage';
 import { AboutPage } from '../about/AboutPage';
 import { LoginPage } from '../login/LoginPage';
+import { Typography } from '@material-ui/core';
+import { AppDataHelper } from '../../services/appDataHelper';
 
 export const MainPage = memo(() => {
 	const useStyles = makeStyles((theme) => ({
@@ -64,6 +66,15 @@ export const MainPage = memo(() => {
 			padding: 32,
 			color: theme.palette.text.primary,
 		},
+		footer: {
+			position: 'absolute',
+			right: 6,
+			bottom: -6,
+			transform: 'rotateZ(90deg)',
+			transformOrigin: 'top right',
+			fontSize: 13,
+			color: '#666',
+		},
 	}));
 	const classes = useStyles();
 
@@ -89,6 +100,9 @@ export const MainPage = memo(() => {
 					</Switch>
 				</Box>
 			</Box>
+			<Typography variant="body1" className={classes.footer}>
+				{`${AppDataHelper.appName} v${AppDataHelper.appVersion} by Uri Kalish`}
+			</Typography>
 		</Box>
 	);
 });

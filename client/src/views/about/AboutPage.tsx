@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
+import { AppDataHelper } from '../../services/appDataHelper';
 
 export const AboutPage = memo(() => {
 	const useStyles = makeStyles(() => ({
@@ -14,28 +15,31 @@ export const AboutPage = memo(() => {
 			gridTemplateColumns: 'auto',
 			userSelect: 'none',
 		},
-		text: {
-			fontFamily: '"Share Tech Mono", Consolas, monospace',
+		propLine: {
+			marginLeft: 32,
 		},
 	}));
 	const classes = useStyles();
 
-	const textLines = [
-		'App....................c0de_gr1d',
-		'Version....................1.0.0',
-		'UI_framework...............React',
-		'UI_components...........Material',
-		'Code_frames..............CodePen',
-		'Developed_by..........Uri_Kalish',
+	const propLines = [
+		['appName', `'${AppDataHelper.appName}'`],
+		['appVersion', `'${AppDataHelper.appVersion}'`],
+		['uiLibs', `['React.js', 'Material-UI']`],
+		['codeFrames', `'https://codepen.io'`],
+		['developedBy', `'Uri Kalish'`],
 	];
 
 	return (
-		<Box id="AboutPage" className={classes.root}>
-			{textLines.map((txt, i) => (
-				<Typography key={i} variant="h5" className={`${classes.text} mono`}>
-					{txt}
+		<Box id="AboutPage" className={`${classes.root} mono`}>
+			<Typography variant="h6">{'{'}</Typography>
+			{propLines.map((txt, i) => (
+				<Typography key={i} variant="h6" className={`${classes.propLine} mono`}>
+					{`${txt[0]}: ${txt[1]}`},
 				</Typography>
 			))}
+			<Typography variant="h6" className="mono">
+				{'}'}
+			</Typography>
 		</Box>
 	);
 });
