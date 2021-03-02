@@ -10,6 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { AvatarHelper } from '../../services/avatarHelper';
+import {TextHelper} from "../../services/textHelper";
 
 interface GridItemProps {
 	index: number;
@@ -208,7 +209,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 				</Box>
 				<Box className={classes.gridItemHeader}>
 					<Box className={classes.codePenTitle} style={{ color: cpColor }} title={cpTitle}>
-						{cpTitle}
+						{TextHelper.hack(cpTitle, true, '_')}
 					</Box>
 					{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
 					{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
