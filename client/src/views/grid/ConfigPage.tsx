@@ -24,12 +24,14 @@ function getDemoConfig(): GridInfo {
 		name: 'myGrid',
 		codePens: [
 			{
-				url: 'https://codepen.io/urikalish/pen/yLVeGzq',
 				title: 'gr33n_hack3r',
+				avatar: 23,
+				url: 'https://codepen.io/urikalish/pen/zYoapox',
 			},
 			{
-				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 				title: 'r3d_hack3r',
+				avatar: 15,
+				url: 'https://codepen.io/urikalish/pen/ZEBGVVY',
 			},
 		],
 	};
