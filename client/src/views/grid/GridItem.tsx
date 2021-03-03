@@ -120,6 +120,10 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const [avatarSelection, setAvatarSelection] = useState<boolean>(false);
 
 	useEffect(() => {
+		setAvatar(CodePenInfoHelper.getCodePenAvatar(cpi));
+	}, [cpi.avatar]);
+
+	useEffect(() => {
 		if (!itemRef.current) {
 			return;
 		}

@@ -26,8 +26,8 @@ export const MainPage = memo(() => {
 			backgroundSize: 'cover',
 			color: theme.palette.text.primary,
 			fontFamily: theme.typography.fontFamily,
-			opacity: 0,
-			animation: 'fade-in-animation 2s 1s ease-in-out forwards',
+			//opacity: 0,
+			//animation: 'fade-in-animation 2s 1s ease-in-out forwards',
 		},
 		cover1: {
 			position: 'relative',

@@ -57,35 +57,37 @@ export const GridPage = memo(() => {
 		return Math.round(width / aspectRatio + 80);
 	}, [useWindowSize, columnNumber, aspectRatio]);
 
-	useCurrentEffect((isCurrent) => {
-		(async () => {
-			// const data = await getFromServer(`/api/grids/${id}`);
-			// if (!data || !isCurrent()) {
-			// 	return;
-			// }
-			// const gridInfo: GridInfo = JSON.parse(data).gridInfo;
-
-			const gridInfo: GridInfo | null = LocalStorageHelper.load();
-
-			if (!gridInfo) {
+	const loadAndRefresh = async (isCurrent?: () => boolean) => {
+		debugger;
+		const gridInfo: GridInfo | null = LocalStorageHelper.load();
+		if (!gridInfo) {
+			return;
+		}
+		const info: CodePenInfo[] = gridInfo.codePens;
+		setCodePensInfo(info);
+		setTimeout(() => {
+			if (isCurrent !== undefined && !isCurrent()) {
 				return;
 			}
-			const codePenInfo: CodePenInfo[] = gridInfo.codePens;
-			setCodePensInfo(codePenInfo);
-			setTimeout(() => {
-				if (!isCurrent()) {
-					return;
-				}
-				CodePenScriptHelper.appendScript();
-			}, 0);
-		})();
+			CodePenScriptHelper.appendScript();
+			const iFrames = document.querySelectorAll('iframe');
+			iFrames.forEach((iFrame) => {
+				iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
+			});
+		}, 0);
+	};
+
+	useCurrentEffect((isCurrent) => {
+		// const data = await getFromServer(`/api/grids/${id}`);
+		// if (!data || !isCurrent()) {
+		// 	return;
+		// }
+		// const gridInfo: GridInfo = JSON.parse(data).gridInfo;
+		loadAndRefresh(isCurrent).then();
 	}, []);
 
 	const handleClickRefresh = useCallback(() => {
-		const iFrames = document.querySelectorAll('iframe');
-		iFrames.forEach((iFrame) => {
-			iFrame.setAttribute('src', iFrame.getAttribute('src') || '');
-		});
+		loadAndRefresh().then();
 	}, []);
 
 	const handleToggleCode = useCallback(() => {
