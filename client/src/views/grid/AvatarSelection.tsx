@@ -1,7 +1,9 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Box } from '@material-ui/core';
 import { AvatarHelper } from '../../services/avatarHelper';
+//import ZoomInIcon from '@material-ui/icons/ZoomIn';
+//import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 import CloseIcon from '@material-ui/icons/Close';
 
 interface AvatarSelectionProps {
@@ -46,15 +48,12 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			backgroundColor: 'transparent',
 			color: '#fff',
 			display: 'grid',
-			gridTemplateColumns: 'repeat(5, 256px)',
-			gridTemplateRows: '256px',
 			gridGap: 16,
 			borderRadius: '16px',
 			overflow: 'auto',
 		},
 		avatarWrapper: {
 			position: 'relative',
-			height: 256,
 			border: '1px solid #333',
 			borderRadius: '16px',
 			overflow: 'hidden',
@@ -81,13 +80,14 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			},
 		},
 		avatar: {
-			height: 256,
-			width: 256,
 			cursor: 'pointer',
 			userSelect: 'none',
 		},
 	}));
 	const classes = useStyles();
+
+	const [size] = useState(256);
+	const [cols] = useState(5);
 
 	const avatars = AvatarHelper.getAllAvatars(true);
 
@@ -105,10 +105,10 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 	return (
 		<Box id="AvatarSelection" className={classes.root}>
 			<CloseIcon onClick={handleClickExit} className={classes.actionButton} titleAccess="Close" />
-			<Box className={`${classes.avatarGrid} no-scrollbar`}>
+			<Box className={`${classes.avatarGrid} no-scrollbar`} style={{ gridTemplateColumns: `repeat(${cols}, ${size}px)`, gridTemplateRows: `${size}px` }}>
 				{avatars.map((avatar) => (
-					<Box key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatarWrapper}>
-						<img src={AvatarHelper.getAvatarFilePath(avatar)} className={classes.avatar} />
+					<Box key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatarWrapper} style={{ height: `${size}px` }}>
+						<img src={AvatarHelper.getAvatarFilePath(avatar)} className={classes.avatar} style={{ width: `${size}px`, height: `${size}px` }} />
 					</Box>
 				))}
 			</Box>
