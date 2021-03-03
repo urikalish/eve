@@ -1,16 +1,16 @@
 import React, { memo, useState, useCallback, useMemo } from 'react';
-// import { useParams } from 'react-router-dom';
 import { useCurrentEffect } from 'use-current-effect';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { CodePenScriptHelper } from '../../services/codePenScriptHelper';
-// import { ServerContainer } from '../../services/useServer';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { GridInfo } from '../../services/gridInfo';
 import { CodePenInfo } from '../../services/codePenInfo';
 import { GridToolbar } from './GridToolbar';
 import { GridItem } from './GridItem';
+// import { useParams } from 'react-router-dom';
+// import { ServerContainer } from '../../services/useServer';
 
 const columnNumberValues: number[] = [1, 2, 3, 4, 5, 6, 7];
 const aspectRatioValues: number[] = [1 / 3, 1 / 2, 2 / 3, 3 / 4, 1, 4 / 3, 3 / 2, 2, 3];
@@ -90,6 +90,13 @@ export const GridPage = memo(() => {
 		loadAndRefresh().then();
 	}, []);
 
+	const handleChangeItemAvatar = useCallback((index: number, newAvatar: number) => {
+		setCodePensInfo((info) => {
+			info[index].avatar = newAvatar;
+			return info;
+		});
+	}, []);
+
 	const handleToggleCode = useCallback(() => {
 		setShowCode((val) => !val);
 	}, []);
@@ -122,7 +129,7 @@ export const GridPage = memo(() => {
 			<Box className={`${classes.gridContainer} no-scrollbar`}>
 				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
 					{codePensInfo.map((cpi, index) => (
-						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} />
+						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} onChangeItemAvatar={handleChangeItemAvatar} />
 					))}
 				</Box>
 			</Box>

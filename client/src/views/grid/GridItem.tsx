@@ -1,4 +1,4 @@
-import React, { memo, useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { memo, useState, useRef, useEffect, useCallback } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Box from '@material-ui/core/Box/Box';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
@@ -17,9 +17,10 @@ interface GridItemProps {
 	cpi: CodePenInfo;
 	height: number;
 	showCode: boolean;
+	onChangeItemAvatar: (index: number, newAvatar: number) => void;
 }
 
-export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) => {
+export const GridItem = memo(({ index, cpi, height, showCode, onChangeItemAvatar }: GridItemProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
@@ -67,8 +68,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			display: 'flex',
 			alignItems: 'center',
 			backgroundColor: '#222',
-			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
-			//backgroundSize: '24px 24px',
 			padding: '0 8px 0 0',
 		},
 		codePenTitle: {
@@ -98,8 +97,6 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 			bottom: 4,
 			height: 29,
 			backgroundColor: '#222',
-			//backgroundImage: 'linear-gradient(135deg, #111 25%, #222 25%, #222 50%, #111 50%, #111 75%, #222 75%, #222 100%)',
-			//backgroundSize: '24px 24px',
 		},
 		avatarSelectionModal: {
 			left: 0,
@@ -111,17 +108,14 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const classes = useStyles();
 
 	const [blurCode, setBlurCode] = useState<boolean>(true);
-	const [avatar, setAvatar] = useState<number>(() => CodePenInfoHelper.getCodePenAvatar(cpi));
-	const itemRef = useRef<HTMLDivElement>(null);
-	const cpUser = useMemo<string>(() => CodePenInfoHelper.getCodePenUser(cpi), [cpi]);
-	const cpId = useMemo<string>(() => CodePenInfoHelper.getCodePenId(cpi), [cpi]);
-	const cpTitle = useMemo<string>(() => CodePenInfoHelper.getCodePenTitle(cpi), [cpi]);
-	const cpColor = useMemo<string>(() => CodePenInfoHelper.getCodePenColor(cpi), [cpi]);
 	const [avatarSelection, setAvatarSelection] = useState<boolean>(false);
+	const itemRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		setAvatar(CodePenInfoHelper.getCodePenAvatar(cpi));
-	}, [cpi.avatar]);
+	const cpUser = CodePenInfoHelper.getCodePenUser(cpi);
+	const cpId = CodePenInfoHelper.getCodePenId(cpi);
+	const avatar = CodePenInfoHelper.getCodePenAvatar(cpi);
+	const cpTitle = CodePenInfoHelper.getCodePenTitle(cpi);
+	const cpColor = CodePenInfoHelper.getCodePenColor(cpi);
 
 	useEffect(() => {
 		if (!itemRef.current) {
@@ -177,8 +171,8 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		if (newAvatar === -1) {
 			return;
 		}
-		setAvatar(newAvatar);
 		LocalStorageHelper.updateAvatar(cpi.url, newAvatar);
+		onChangeItemAvatar(index, newAvatar);
 	}, []);
 
 	return (
