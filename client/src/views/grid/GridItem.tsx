@@ -17,10 +17,10 @@ interface GridItemProps {
 	cpi: CodePenInfo;
 	height: number;
 	showCode: boolean;
-	onChangeItemAvatar: (index: number, newAvatar: number) => void;
+	onChangeItem: (index: number) => void;
 }
 
-export const GridItem = memo(({ index, cpi, height, showCode, onChangeItemAvatar }: GridItemProps) => {
+export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: GridItemProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
@@ -113,7 +113,7 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItemAvatar
 
 	const cpUser = CodePenInfoHelper.getCodePenUser(cpi);
 	const cpId = CodePenInfoHelper.getCodePenId(cpi);
-	const avatar = CodePenInfoHelper.getCodePenAvatar(cpi);
+	const cpAvatar = CodePenInfoHelper.getCodePenAvatar(cpi);
 	const cpTitle = CodePenInfoHelper.getCodePenTitle(cpi);
 	const cpColor = CodePenInfoHelper.getCodePenColor(cpi);
 
@@ -171,13 +171,14 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItemAvatar
 		if (newAvatar === -1) {
 			return;
 		}
-		LocalStorageHelper.updateAvatar(cpi.url, newAvatar);
-		onChangeItemAvatar(index, newAvatar);
+		LocalStorageHelper.updateAvatar(index, newAvatar);
+		cpi.avatar = newAvatar;
+		onChangeItem(index);
 	}, []);
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<img src={AvatarHelper.getAvatarFilePath(avatar)} onClick={handleClickAvatar} className={classes.avatar} />
+			<img src={AvatarHelper.getAvatarFilePath(cpAvatar)} onClick={handleClickAvatar} className={classes.avatar} />
 			<Box className={classes.opacityWrapper}>
 				<Box
 					id="js-container"
@@ -211,7 +212,7 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItemAvatar
 					</Box>
 					{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
 					{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
-					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh" />
+					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh code" />
 					<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 				</Box>
 				<Box className={classes.gridItemFooter} />
