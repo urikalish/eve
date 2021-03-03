@@ -16,6 +16,11 @@ export class LocalStorageHelper {
 		}
 	}
 
+	static getCodePensInfo(): CodePenInfo[] | null {
+		const gridInfo = LocalStorageHelper.load();
+		return gridInfo ? gridInfo.codePens : null;
+	}
+
 	static save(gridInfo: GridInfo): GridInfo {
 		if (!gridInfo.id) {
 			gridInfo.id = Date.now().toString();
@@ -24,22 +29,14 @@ export class LocalStorageHelper {
 		return gridInfo;
 	}
 
-	static updateAvatar(index: number, newAvatar: number): void {
+	static updateCodePenInfo(index: number, cpi: CodePenInfo): void {
 		const gridInfo = LocalStorageHelper.load();
 		if (!gridInfo) {
 			return;
 		}
 		if (index >= 0 && index < gridInfo.codePens.length) {
-			gridInfo.codePens[index].avatar = newAvatar;
+			gridInfo.codePens[index] = cpi;
 		}
 		LocalStorageHelper.save(gridInfo);
-	}
-
-	static getCodePenInfo(index: number): CodePenInfo | null {
-		const gridInfo = LocalStorageHelper.load();
-		if (!gridInfo) {
-			return null;
-		}
-		return index >= 0 && index < gridInfo.codePens.length ? gridInfo.codePens[index] : null;
 	}
 }

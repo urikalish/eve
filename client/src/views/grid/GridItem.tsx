@@ -8,7 +8,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import { CodePenInfo, CodePenInfoHelper } from '../../services/codePenInfo';
 import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
-import { LocalStorageHelper } from '../../services/localStorageHelper';
 import { AvatarHelper } from '../../services/avatarHelper';
 import { TextHelper } from '../../services/textHelper';
 
@@ -17,7 +16,7 @@ interface GridItemProps {
 	cpi: CodePenInfo;
 	height: number;
 	showCode: boolean;
-	onChangeItem: (index: number) => void;
+	onChangeItem: (index: number, cpi: CodePenInfo) => void;
 }
 
 export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: GridItemProps) => {
@@ -171,9 +170,8 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: Gr
 		if (newAvatar === -1) {
 			return;
 		}
-		LocalStorageHelper.updateAvatar(index, newAvatar);
 		cpi.avatar = newAvatar;
-		onChangeItem(index);
+		onChangeItem(index, cpi);
 	}, []);
 
 	return (

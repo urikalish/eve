@@ -58,7 +58,6 @@ export const GridPage = memo(() => {
 	}, [useWindowSize, columnNumber, aspectRatio]);
 
 	const loadAndRefresh = async (isCurrent?: () => boolean) => {
-		debugger;
 		const gridInfo: GridInfo | null = LocalStorageHelper.load();
 		if (!gridInfo) {
 			return;
@@ -86,18 +85,13 @@ export const GridPage = memo(() => {
 		loadAndRefresh(isCurrent).then();
 	}, []);
 
-	const handleClickRefresh = useCallback(() => {
+	const handleClickRefreshAll = useCallback(() => {
 		loadAndRefresh().then();
 	}, []);
 
-	const handleChangeItem = useCallback((index: number) => {
-		const cpi = LocalStorageHelper.getCodePenInfo(index);
-		if (cpi) {
-			setCodePensInfo((info) => {
-				info[index] = cpi;
-				return info;
-			});
-		}
+	const handleChangeItem = useCallback((index: number, cpi: CodePenInfo) => {
+		LocalStorageHelper.updateCodePenInfo(index, cpi);
+		loadAndRefresh().then();
 	}, []);
 
 	const handleToggleCode = useCallback(() => {
@@ -123,7 +117,7 @@ export const GridPage = memo(() => {
 						canIncHeight: aspectRatio > aspectRatioValues[0],
 						canDecHeight: aspectRatio < aspectRatioValues[aspectRatioValues.length - 1],
 					}}
-					onClickRefresh={handleClickRefresh}
+					onClickRefresh={handleClickRefreshAll}
 					onToggleCode={handleToggleCode}
 					onChangeColumnNumber={handleChangeColumnNumber}
 					onChangeAspectRatio={handleChangeAspectRatio}
