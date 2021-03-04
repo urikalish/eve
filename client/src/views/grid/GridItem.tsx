@@ -10,16 +10,16 @@ import Modal from '@material-ui/core/Modal';
 import { AvatarSelection } from './AvatarSelection';
 import { AvatarHelper } from '../../services/avatarHelper';
 import { TextHelper } from '../../services/textHelper';
+import { LocalStorageHelper } from '../../services/localStorageHelper';
 
 interface GridItemProps {
 	index: number;
 	cpi: CodePenInfo;
 	height: number;
 	showCode: boolean;
-	onChangeItem: (index: number, cpi: CodePenInfo) => void;
 }
 
-export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: GridItemProps) => {
+export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) => {
 	const useStyles = makeStyles(() => ({
 		root: {
 			position: 'relative',
@@ -171,7 +171,7 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: Gr
 			return;
 		}
 		cpi.avatar = newAvatar;
-		onChangeItem(index, cpi);
+		LocalStorageHelper.updateCodePenInfo(index, cpi);
 	}, []);
 
 	return (
@@ -210,7 +210,7 @@ export const GridItem = memo(({ index, cpi, height, showCode, onChangeItem }: Gr
 					</Box>
 					{showCode && blurCode && <VisibilityOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Reveal code" />}
 					{showCode && !blurCode && <VisibilityOffOutlinedIcon onClick={handleClickBlur} className={classes.actionButton} titleAccess="Blur code" />}
-					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh code" />
+					<RefreshIcon onClick={handleClickRefresh} className={classes.actionButton} titleAccess="Refresh frame" />
 					<OpenInNewIcon onClick={handleNavigateToCodePen} className={classes.actionButton} titleAccess="Open in CodePen" />
 				</Box>
 				<Box className={classes.gridItemFooter} />

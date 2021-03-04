@@ -89,11 +89,6 @@ export const GridPage = memo(() => {
 		loadAndRefresh().then();
 	}, []);
 
-	const handleChangeItem = useCallback((index: number, cpi: CodePenInfo) => {
-		LocalStorageHelper.updateCodePenInfo(index, cpi);
-		loadAndRefresh().then();
-	}, []);
-
 	const handleToggleCode = useCallback(() => {
 		setShowCode((val) => !val);
 	}, []);
@@ -126,7 +121,7 @@ export const GridPage = memo(() => {
 			<Box className={`${classes.gridContainer} no-scrollbar`}>
 				<Box className={classes.grid} style={{ gridTemplateColumns: `repeat(${columnNumber},1fr)` }}>
 					{codePensInfo.map((cpi, index) => (
-						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} onChangeItem={handleChangeItem} />
+						<GridItem key={index} index={index} cpi={cpi} height={itemHeight} showCode={showCode} />
 					))}
 				</Box>
 			</Box>
