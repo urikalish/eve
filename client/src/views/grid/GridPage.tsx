@@ -44,7 +44,7 @@ export const GridPage = memo(() => {
 
 	const [codePensInfo, setCodePensInfo] = useState<CodePenInfo[]>([]);
 	const [columnNumber, setColumnNumber] = useState<number>(5);
-	const [aspectRatio, setAspectRatio] = useState<number>(2);
+	const [aspectRatio, setAspectRatio] = useState<number>(3 / 2);
 	const [showCode, setShowCode] = useState<boolean>(false);
 	const size = useWindowSize();
 	//const { getFromServer } = ServerContainer.useContainer();
