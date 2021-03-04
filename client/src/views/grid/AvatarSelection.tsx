@@ -48,14 +48,12 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			backgroundColor: 'transparent',
 			color: '#fff',
 			display: 'grid',
-			gridGap: 16,
 			borderRadius: '16px',
 			overflow: 'auto',
 		},
 		avatarWrapper: {
 			position: 'relative',
 			border: '1px solid #333',
-			borderRadius: '16px',
 			overflow: 'hidden',
 			transition: 'all 0.25s ease-in-out',
 			filter: 'grayscale(0.2)',
@@ -65,8 +63,8 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 			'&:after': {
 				content: 'attr(data-avatar) " "',
 				position: 'absolute',
-				top: 8,
-				left: 8,
+				top: 4,
+				left: 4,
 				width: 28,
 				height: 28,
 				border: '1px solid #666',
@@ -86,8 +84,8 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 	}));
 	const classes = useStyles();
 
-	const [size] = useState(256);
-	const [cols] = useState(5);
+	const [settings] = useState({ cols: 5, size: 256, gap: 16, radius: 16 });
+	//const [settings] = useState({cols: 10, size: 128, gap: 8, radius: 8});
 
 	const avatars = AvatarHelper.getAllAvatars(true);
 
@@ -105,10 +103,27 @@ export const AvatarSelection = memo(({ onSelectAvatar }: AvatarSelectionProps) =
 	return (
 		<Box id="AvatarSelection" className={classes.root}>
 			<CloseIcon onClick={handleClickExit} className={classes.actionButton} titleAccess="Close" />
-			<Box className={`${classes.avatarGrid} no-scrollbar`} style={{ gridTemplateColumns: `repeat(${cols}, ${size}px)`, gridTemplateRows: `${size}px` }}>
+			<Box
+				className={`${classes.avatarGrid} no-scrollbar`}
+				style={{
+					gridTemplateColumns: `repeat(${settings.cols}, ${settings.size}px)`,
+					gridTemplateRows: `${settings.size}px`,
+					gridGap: `${settings.gap}px`,
+				}}
+			>
 				{avatars.map((avatar) => (
-					<Box key={avatar} data-avatar={avatar} onClick={handleClickAvatar} className={classes.avatarWrapper} style={{ height: `${size}px` }}>
-						<img src={AvatarHelper.getAvatarFilePath(avatar)} className={classes.avatar} style={{ width: `${size}px`, height: `${size}px` }} />
+					<Box
+						key={avatar}
+						data-avatar={avatar}
+						onClick={handleClickAvatar}
+						className={classes.avatarWrapper}
+						style={{ height: `${settings.size}px`, borderRadius: `${settings.radius}px` }}
+					>
+						<img
+							src={AvatarHelper.getAvatarFilePath(avatar)}
+							className={classes.avatar}
+							style={{ width: `${settings.size}px`, height: `${settings.size}px` }}
+						/>
 					</Box>
 				))}
 			</Box>
