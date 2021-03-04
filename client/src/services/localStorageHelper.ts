@@ -29,13 +29,13 @@ export class LocalStorageHelper {
 		return gridInfo;
 	}
 
-	static updateCodePenInfo(index: number, cpi: CodePenInfo): void {
+	static updateCodePenAvatar(index: number, newAvatar: number): void {
 		const gridInfo = LocalStorageHelper.load();
 		if (!gridInfo) {
 			return;
 		}
 		if (index >= 0 && index < gridInfo.codePens.length) {
-			gridInfo.codePens[index] = cpi;
+			gridInfo.codePens[index].avatar = newAvatar;
 		}
 		LocalStorageHelper.save(gridInfo);
 	}

@@ -174,7 +174,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		if (imageRef.current) {
 			imageRef.current.src = AvatarHelper.getAvatarFilePath(newAvatar);
 		}
-		LocalStorageHelper.updateCodePenInfo(index, cpi);
+		LocalStorageHelper.updateCodePenAvatar(index, newAvatar);
 	}, []);
 
 	return (
