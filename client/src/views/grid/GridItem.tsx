@@ -109,6 +109,7 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 	const [blurCode, setBlurCode] = useState<boolean>(true);
 	const [avatarSelection, setAvatarSelection] = useState<boolean>(false);
 	const itemRef = useRef<HTMLDivElement>(null);
+	const imageRef = useRef<HTMLImageElement>(null);
 
 	const cpUser = CodePenInfoHelper.getCodePenUser(cpi);
 	const cpId = CodePenInfoHelper.getCodePenId(cpi);
@@ -170,13 +171,15 @@ export const GridItem = memo(({ index, cpi, height, showCode }: GridItemProps) =
 		if (newAvatar === -1) {
 			return;
 		}
-		cpi.avatar = newAvatar;
+		if (imageRef.current) {
+			imageRef.current.src = AvatarHelper.getAvatarFilePath(newAvatar);
+		}
 		LocalStorageHelper.updateCodePenInfo(index, cpi);
 	}, []);
 
 	return (
 		<div id="GridItem" ref={itemRef} className={`${classes.root} grid-item-${index}`} style={{ height: height + 2 }}>
-			<img src={AvatarHelper.getAvatarFilePath(cpAvatar)} onClick={handleClickAvatar} className={classes.avatar} />
+			<img ref={imageRef} src={AvatarHelper.getAvatarFilePath(cpAvatar)} onClick={handleClickAvatar} className={classes.avatar} />
 			<Box className={classes.opacityWrapper}>
 				<Box
 					id="js-container"
